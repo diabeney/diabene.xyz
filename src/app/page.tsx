@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div>
       <div>
-        <h1 className=" text-4xl  pb-1 font-bold mt-8">Diabene Yaw Addo</h1>
-        <p className=" text-stone-600 flex items-center gap-1">
+        <h1 className=" text-4xl pb-1 font-bold mt-8 dark:text-stone-100">Diabene Yaw Addo</h1>
+        <p className=" text-stone-600 dark:text-stone-500 flex items-center gap-1">
           {" "}
           <Icon icon={"circum:map-pin"} /> Software Engineer, Ghana.
         </p>
@@ -22,7 +22,7 @@ export default function Home() {
         I'm always looking for opportunities to learn and grow. Feel free to explore my portfolio and{" "}
         <ExternalLink href={"mailto:addodiabene69@gmail.com"}>reach out</ExternalLink> if you're ready to collaborate on your next project!
       </div>
-      <section className="flex gap-4 py-6 justify-center text-black items-center">
+      <section className="flex gap-4 py-6 justify-center text-black dark:text-stone-300 items-center">
         <a href="https://github.com/diabeney" className="  opacity-60 hover:opacity-100 transition-all duration-300">
           <Icon icon={"line-md:github-loop"} className=" w-6 h-6" />
         </a>
@@ -33,9 +33,9 @@ export default function Home() {
           <Icon icon={"iconoir:discord"} className=" w-6 h-6" />
         </a>
         <div className="w-full relative my-2">
-          <hr className="w-full border-stone-200" />
+          <hr className="w-full border-stone-200 dark:border-stone-700" />
           <div className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden">
-            <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-stone-500 to-transparent animate-shootingStar"></div>
+            <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-stone-500 dark:via-stone-100 to-transparent animate-shootingStar"></div>
           </div>
         </div>
       </section>

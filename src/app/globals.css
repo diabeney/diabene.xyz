@@ -8,6 +8,19 @@
   --foreground-dark: var(--background);
 }
 
+.dark ::selection {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background-color: var(--background-dark);
+  color: var(--foreground-dark);
+}
+
+
+
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @keyframes shootingStar {
@@ -27,12 +40,13 @@ html {
   scrollbar-gutter: stable;
 }
 body {
-  @apply font-(family-name:--font-paragraph) font-medium tracking-tight leading-relaxed text-stone-600
+  @apply font-(family-name:--font-paragraph) font-medium leading-relaxed text-stone-600 dark:text-stone-400
 }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply font-(family-name:--font-heading) tracking-tight leading-tight text-stone-900
+  @apply font-(family-name:--font-heading)  text-stone-900 dark:text-stone-100
 }
+
 
 .info {
   @apply bg-blue-50 my-4 p-2 text-sm border-l-blue-300 border-l-2   border-blue-300 dark:border-blue-900;

@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const noTransitionRoutes = ["events"];
+const noTransitionRoutes = ["playground"];
 
 export default function Template({ children }: Props) {
   const pathname = usePathname();

@@ -89,3 +89,15 @@ export const projects = [
     tag: ["learning"],
   },
 ];
+
+export const TypingQuotes = [
+  "I know what it's like to lose. To feel so desperately that you're right, yet to fail nonetheless. It's frightening, turns the legs to jelly. I ask you, to what end? Dread it, run from it, destiny arrives all the same. And now it's here. Or should I say, I am inevitable.",
+
+  "I thought by eliminating half of life, the other half would thrive. But you've shown me that's impossible. As long as there are those who remember what was, there will always be those unable to accept what can be. They will resist.",
+
+  "The Second Law of Thermodynamics implies that natural processes increase the entropy of the universe. In any energy exchange, if no energy enters or leaves the system, the potential energy will always be less than that of the initial state. This is known as entropy.",
+
+  "The laws of thermodynamics form the backbone of physical science. The First Law states that energy is conserved in any process—it cannot be created or destroyed. The Second Law introduces the concept of entropy and dictates the direction of thermodynamic processes",
+
+  "Let's have a toast for the douchebags. Let's have a toast for the assholes. Let's have a toast for the scumbags, every one of them that I know. I always find something wrong. You've been putting up with my stuff just way too long.",
+];

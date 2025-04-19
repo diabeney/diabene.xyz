@@ -17,10 +17,20 @@ export default function BlogView({ posts }: { posts: ContentMetadata[] }) {
   return (
     <div className=" mt-10 w-full">
       <span className=" flex ml-auto w-fit items-center gap-1">
-        <button className={`${view === "grid" ? "bg-stone-200" : "bg-stone-50"} transition-colors duration-300 rounded-lg p-1`} onClick={() => setView("grid")}>
+        <button
+          className={`${
+            view === "grid" ? "bg-stone-200 dark:bg-stone-600 dark:text-white" : "bg-stone-50 dark:bg-stone-900"
+          } transition-colors duration-300 rounded-lg p-1`}
+          onClick={() => setView("grid")}
+        >
           <Icon icon={"foundation:thumbnails"} className=" size-6" />
         </button>
-        <button className={`${view === "list" ? "bg-stone-200" : "bg-stone-50"} transition-colors duration-300 rounded-lg p-1`} onClick={() => setView("list")}>
+        <button
+          className={`${
+            view === "list" ? "bg-stone-200 dark:bg-stone-600 dark:text-white" : " bg-stone-50 dark:bg-stone-900"
+          } transition-colors duration-300 rounded-lg p-1`}
+          onClick={() => setView("list")}
+        >
           <Icon icon={"lucide:list"} className="size-6" />
         </button>
       </span>

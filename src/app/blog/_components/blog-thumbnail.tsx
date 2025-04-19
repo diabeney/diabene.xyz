@@ -36,7 +36,7 @@ export default function BlogThumbnail({ posts }: { posts: ContentMetadata[] }) {
             </p>
           </div>
         </div>
-        <p className=" text-stone-800 group-hover:underline line-clamp-2">{post.title}</p>
+        <p className=" text-stone-800 dark:text-stone-400 group-hover:underline group-hover:dark:text-stone-200 line-clamp-2">{post.title}</p>
       </Link>
     </li>
   ));

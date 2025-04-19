@@ -6,7 +6,7 @@ export default async function Blog() {
     return (
       <div className="">
         <div>
-          <h1 className="text-4xl  pb-1 font-bold mt-8">uTopia</h1>
+          <h1 className="text-4xl  pb-1 font-bold mt-8">Utopia</h1>
         </div>
         <p>This is where i share my thoughts, projects and discoveries in web dev technologies and chemical engineering.</p>
         {posts.length === 0 ? <p>No blog posts published.</p> : <BlogView posts={posts} />}

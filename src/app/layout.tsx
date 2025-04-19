@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Ubuntu_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar";
 
@@ -60,6 +61,12 @@ const satoshi = localFont({
   variable: "--font-heading",
 });
 
+const ubuntuMono = Ubuntu_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Diabene",
   description:
@@ -75,21 +82,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${satoshi.variable} p-4 ${generalSans.variable} pt-25 bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
+        className={`${satoshi.variable} ${ubuntuMono.variable} p-4 ${generalSans.variable} pt-25 bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
       >
         <div className="max-w-screen-sm mx-auto">
           <Navbar />
           {children}
           <footer className=" text-sm space-y-4 my-10 text-stone-500">
             <div className="w-full relative my-2">
-              <hr className="w-full border-stone-200" />
+              <hr className="w-full border-stone-200 dark:border-stone-700" />
               <div className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden">
-                <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-stone-500 to-transparent animate-shootingStar"></div>
+                <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-stone-500 dark:via-stone-100 to-transparent animate-shootingStar"></div>
               </div>
             </div>
             <div className=" flex items-center mt-6 gap-2 justify-between">
               <p>&copy; {currentYear} Diabene Yaw Addo | All rights reserved</p>
-              <a className=" font-extrabold text-orange-600">タウンン</a>
+              <a className=" font-extrabold text-amber-500">タウンン</a>
             </div>
           </footer>
         </div>
