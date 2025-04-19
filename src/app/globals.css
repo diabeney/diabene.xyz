@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .info {
-  @apply bg-blue-50 my-4 p-2 text-sm border-l-blue-300 border-l-2   border-blue-300 dark:border-blue-900;
+  @apply bg-blue-50 my-4 p-2 border-l-blue-300 border-l-2   border-blue-300 dark:border-blue-900 dark:bg-blue-950/40;
 }
 
 .info > h2,
@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .warning {
-  @apply my-4 p-4 text-sm border-l-red-300 border-l-2 bg-red-50 dark:bg-[#3D2323] border-red-300  dark:border-red-300;
+  @apply my-4 p-4  border-l-red-300 border-l-2 bg-red-50 dark:bg-[#3D2323] border-red-300  dark:border-red-300;
 }
 
 .warning > h1,
