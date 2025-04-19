@@ -1,4 +1,4 @@
-import Keypp from "../_components/typing";
+import Keypp from "../_components/keypp";
 import Back from "@/components/back";
 
 export default function KeyppPage() {

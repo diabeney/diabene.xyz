@@ -6,7 +6,7 @@ export default function BlogList({ posts }: { posts: ContentMetadata[] }) {
   return (
     <ul className=" flex flex-col gap-4 mt-6 w-full">
       {posts.map((post) => (
-        <li key={post.slug} className=" border-b border-b-neutral-300 dark:border-b-neutral-700 group">
+        <li key={post.slug} className=" [&:not(:last-child)]:border-b [&:not(:last-child)]:border-stone-300 dark:[&:not(:last-child)]:border-stone-700 group">
           <Link href={`/blog/${post.slug}`} className="transition-all duration-300 flex items-center justify-between gap-2 py-2">
             <Icon
               icon={"uiw:d-arrow-right"}

@@ -8,7 +8,7 @@ type TestStatus = "idle" | "running" | "paused" | "finished";
 
 const INACTIVITY_TIMEOUT_MS = 5000;
 
-export default function TypingSpeedTest() {
+export default function Keypp() {
   const [input, setInput] = useState<string>("");
   const [quote, setQuote] = useState<string>("");
   const [startTime, setStartTime] = useState<number | null>(null);
