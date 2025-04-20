@@ -4,6 +4,8 @@ import { Ubuntu_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar";
 import ThemeProviderWithMeta from "../lib/provider";
+import { Analytics } from "@vercel/analytics/react";
+
 const generalSans = localFont({
   src: [
     {
@@ -84,6 +86,7 @@ export default function RootLayout({
       <body
         className={`${satoshi.variable} ${ubuntuMono.variable} p-4 ${generalSans.variable} pt-8 md:pt-20 bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
       >
+        <Analytics />
         <ThemeProviderWithMeta>
           {/* <Provider> */}
           <div className="max-w-screen-sm mx-auto">
