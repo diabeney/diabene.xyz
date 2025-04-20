@@ -30,7 +30,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
       >
         <Back />
         <h1>{title}</h1>
-        <div className="flex items-center justify-between">
+        <div className="flex text-sm items-center justify-between">
           <section className="flex items-center gap-2">
             <p className="text-gray-700">{format(createdAt, "MMMM d, yyyy")}</p>
             <p className="text-gray-700">•</p>
