@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "../components/navbar";
 import ThemeProviderWithMeta from "../lib/provider";
 import { Analytics } from "@vercel/analytics/react";
+import Link from "next/link";
 
 const generalSans = localFont({
   src: [
@@ -73,9 +74,36 @@ const ubuntuMono = Ubuntu_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Diabene",
+  title: {
+    template: "%s | Diabene",
+    default: "Diabene",
+  },
   description:
     "A Ghanaian software engineer with interest in user interfaces, backend development, open-source projects, and developer tools. Mostly writing software in TypeScript and Go.",
+  keywords: ["Software Engineer", "Web Developer", "Open Source"],
+  authors: [{ name: "Diabene Yaw Addo" }],
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://diabene.xyz"),
+  openGraph: {
+    title: "Diabene",
+    description: "Software Engineer",
+    url: process.env.NEXT_PUBLIC_BASE_URL,
+    siteName: "Diabene Portfolio",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`,
+        width: 800,
+        height: 600,
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Diabene",
+    description: "Software Engineer",
+    creator: "@diabeneyy",
+    images: [`${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`],
+  },
 };
 
 export const viewport: Viewport = {
@@ -122,13 +150,13 @@ export default function RootLayout({
               </div>
               <div className="flex items-center mt-6 gap-2 justify-between">
                 <p>&copy; {currentYear} Diabene Yaw Addo | All rights reserved</p>
-                <a
+                <Link
                   className="font-extrabold text-amber-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded px-1"
                   href="/"
                   aria-label="Home"
                 >
                   タウンン
-                </a>
+                </Link>
               </div>
             </footer>
           </div>

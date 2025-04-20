@@ -1,5 +1,33 @@
 import { getAllContentMetadata } from "@/lib/utils/content-metadata";
 import BlogView from "./_components/shared-layout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Blog posts by Diabene",
+  openGraph: {
+    title: "Diabene",
+    description: "Software Engineer",
+    url: process.env.NEXT_PUBLIC_BASE_URL,
+    siteName: "Diabene Portfolio",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`,
+        width: 800,
+        height: 600,
+      },
+    ],
+    type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Diabene",
+    description: "Software Engineer",
+    creator: "@diabeneyy",
+    images: [`${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`],
+  },
+};
+
 export default async function Blog() {
   try {
     const posts = await getAllContentMetadata({

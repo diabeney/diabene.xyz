@@ -4,6 +4,8 @@ import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
 import DigitalClock from "@/app/playground/_components/clock";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
 const routes = [
   {
     label: "Blog",
@@ -18,6 +20,11 @@ const routes = [
 function Navbar() {
   const { theme, setTheme } = useTheme();
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const isActive = (href: string) => {
     if (pathname !== "/" && href === "/") {
@@ -25,6 +32,7 @@ function Navbar() {
     }
     return pathname.startsWith(href);
   };
+
   return (
     <nav
       className="w-full z-50 flex justify-between bg-(background:--background) dark:bg-(background:--background-dark) py-4 sticky top-0"
@@ -65,18 +73,20 @@ function Navbar() {
       </section>
       <section className="flex gap-2 items-center">
         <DigitalClock />
-        <button
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="aspect-square p-1 w-fit grid place-items-center border rounded-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
-          aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-          title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-        >
-          {theme === "dark" ? (
-            <Icon icon={`mingcute:sun-fill`} aria-hidden="true" />
-          ) : (
-            <Icon icon={`mingcute:moon-fill`} aria-hidden="true" />
-          )}
-        </button>
+        {mounted && (
+          <button
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            className="aspect-square p-1 w-fit grid place-items-center border rounded-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
+            aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+            title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+          >
+            {theme === "light" ? (
+              <Icon icon={`mingcute:moon-fill`} aria-hidden="true" />
+            ) : (
+              <Icon icon={`mingcute:sun-fill`} aria-hidden="true" />
+            )}
+          </button>
+        )}
       </section>
     </nav>
   );

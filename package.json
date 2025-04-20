@@ -10,7 +10,6 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@axe-core/react": "^4.10.1",
     "@codemirror/lang-javascript": "^6.2.3",
     "@iconify/react": "^5.2.1",
     "@mdx-js/loader": "^3.1.0",
@@ -30,6 +29,7 @@
     "remark-mdx-frontmatter": "^5.1.0"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^15.3.1",
     "@types/mdx": "^2.0.13",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.16",

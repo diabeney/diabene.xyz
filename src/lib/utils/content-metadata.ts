@@ -3,7 +3,8 @@
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import matter from "gray-matter";
-import { __CONTENT_DIR } from "@/app/blog/[slug]/page";
+
+const __CONTENT_DIR = path.join(process.cwd(), "src", "contents");
 
 export type ContentMetadata = {
   title: string;
