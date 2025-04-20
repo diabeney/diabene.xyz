@@ -22,7 +22,8 @@ export default function ThemeColorMeta() {
       document.head.appendChild(metaThemeColor);
     }
 
-    const themeColor = resolvedTheme === "dark" ? "oklch(0.17 0.0041 106.83)" : "oklch(0.99 0.0164 107.04)";
+    const themeColor =
+      resolvedTheme === "dark" ? "oklch(0.17 0.0041 106.83)" : "oklch(0.99 0.0164 107.04)";
     metaThemeColor.setAttribute("content", themeColor);
   }, [resolvedTheme, mounted]);
 

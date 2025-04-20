@@ -18,9 +18,6 @@
   color: var(--foreground-dark);
 }
 
-
-
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 @keyframes shootingStar {
@@ -40,18 +37,21 @@ html {
   scrollbar-gutter: stable;
 }
 body {
-  @apply font-(family-name:--font-paragraph) font-medium leading-relaxed text-pretty tracking-tight text-stone-600 dark:text-stone-400 my-[1lh]
+  @apply font-(family-name:--font-paragraph) font-medium leading-relaxed text-pretty tracking-tight text-stone-600 dark:text-stone-400 my-[1lh];
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @apply font-(family-name:--font-heading)  text-stone-900 dark:text-stone-100
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-(family-name:--font-heading)  text-stone-900 dark:text-stone-100;
 }
-
 
 .good-to-know {
-  @apply  border-l-2 text-sm px-4 py-2 border-stone-300 bg-stone-100/10  dark:border-stone-200 dark:bg-stone-50/5;
+  @apply border-l-2 text-sm px-4 py-2 border-stone-300 bg-stone-100/10  dark:border-stone-200 dark:bg-stone-50/5;
 }
-
 
 .info {
   @apply bg-blue-50 my-4 p-2 border-l-blue-300 border-l-2   border-blue-300 dark:border-blue-900 dark:bg-blue-950/40;
@@ -71,4 +71,3 @@ h1, h2, h3, h4, h5, h6 {
 .warning > h3 {
   @apply dark:text-red-300 text-red-500;
 }
-

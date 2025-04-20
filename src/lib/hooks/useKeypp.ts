@@ -162,7 +162,16 @@ export function useKeypp() {
         clearIntervalTimer();
       }
     },
-    [status, startTime, input, quote, resetInactivityTimer, clearInactivityTimer, clearIntervalTimer, isValidTypingKey]
+    [
+      status,
+      startTime,
+      input,
+      quote,
+      resetInactivityTimer,
+      clearInactivityTimer,
+      clearIntervalTimer,
+      isValidTypingKey,
+    ]
   );
 
   return {

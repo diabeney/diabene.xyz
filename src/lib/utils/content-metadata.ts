@@ -31,7 +31,10 @@ export async function getContentMetadata(slug: string): Promise<ContentMetadata>
   const filePath = path.join(__CONTENT_DIR, `${slug}.mdx`);
 
   try {
-    const [stats, fileContent] = await Promise.all([fs.stat(filePath), fs.readFile(filePath, "utf-8")]);
+    const [stats, fileContent] = await Promise.all([
+      fs.stat(filePath),
+      fs.readFile(filePath, "utf-8"),
+    ]);
 
     const { data: frontmatter, content } = matter(fileContent);
 

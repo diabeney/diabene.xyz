@@ -19,7 +19,9 @@ export default function BlogView({ posts }: { posts: ContentMetadata[] }) {
       <span className=" flex ml-auto w-fit items-center gap-1">
         <button
           className={`${
-            view === "grid" ? "bg-stone-200 dark:bg-stone-600 dark:text-white" : "bg-stone-50 dark:bg-stone-900"
+            view === "grid"
+              ? "bg-stone-200 dark:bg-stone-600 dark:text-white"
+              : "bg-stone-50 dark:bg-stone-900"
           } transition-colors duration-300 rounded-lg p-1`}
           onClick={() => setView("grid")}
         >
@@ -27,7 +29,9 @@ export default function BlogView({ posts }: { posts: ContentMetadata[] }) {
         </button>
         <button
           className={`${
-            view === "list" ? "bg-stone-200 dark:bg-stone-600 dark:text-white" : " bg-stone-50 dark:bg-stone-900"
+            view === "list"
+              ? "bg-stone-200 dark:bg-stone-600 dark:text-white"
+              : " bg-stone-50 dark:bg-stone-900"
           } transition-colors duration-300 rounded-lg p-1`}
           onClick={() => setView("list")}
         >
@@ -37,13 +41,25 @@ export default function BlogView({ posts }: { posts: ContentMetadata[] }) {
 
       <AnimatePresence mode="wait" initial={false}>
         {view === "grid" ? (
-          <motion.ul key="grid" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
+          <motion.ul
+            key="grid"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
             <ul className="space-y-4 mt-4 pl-0 list-none grid grid-cols-1 md:grid-cols-2 gap-4">
               <BlogThumbnail posts={posts} />
             </ul>
           </motion.ul>
         ) : (
-          <motion.div key="list" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
+          <motion.div
+            key="list"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
             <ul className=" flex gap-6">
               <BlogList posts={posts} />
             </ul>

@@ -28,7 +28,10 @@ function Navbar() {
   return (
     <nav className=" w-full z-50 flex justify-between bg-(background:--background) dark:bg-(background:--background-dark) py-4 sticky top-0">
       <section className="flex gap-8 items-center ">
-        <Link href="/" className=" font-bold text-amber-500 hover:text-amber-600 transition-all duration-300">
+        <Link
+          href="/"
+          className=" font-bold text-amber-500 hover:text-amber-600 transition-all duration-300"
+        >
           タウンン
         </Link>
         <div className="">
@@ -37,7 +40,9 @@ function Navbar() {
               <li
                 key={route.label}
                 className={` ${
-                  isActive(route.path) ? "underline text-stone-900 dark:text-stone-100 opacity-100" : "hover:opacity-100"
+                  isActive(route.path)
+                    ? "underline text-stone-900 dark:text-stone-100 opacity-100"
+                    : "hover:opacity-100"
                 } opacity-60 dark:text-stone-200 transition-all duration-300`}
               >
                 <Link href={route.path}>{route.label}</Link>
@@ -52,7 +57,11 @@ function Navbar() {
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
           className=" aspect-square p-1 w-fit grid place-items-center border rounded-full cursor-pointer "
         >
-          {theme === "light" ? <Icon icon={`mingcute:sun-fill`} /> : <Icon icon={`mingcute:moon-fill`} />}
+          {theme === "light" ? (
+            <Icon icon={`mingcute:sun-fill`} />
+          ) : (
+            <Icon icon={`mingcute:moon-fill`} />
+          )}
         </button>
       </section>
     </nav>

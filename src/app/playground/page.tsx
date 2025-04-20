@@ -7,12 +7,18 @@ export default function Playground() {
     <div>
       <div>
         <h1 className="text-4xl  pb-1 font-bold mt-8">Astroworld!</h1>
-        <p>Collection of interactive projects. These are my own minimalistic versions of tools I use frequently :{")"}</p>
+        <p>
+          Collection of interactive projects. These are my own minimalistic versions of tools I use
+          frequently :{")"}
+        </p>
       </div>
       <ul className="mt-10 flex flex-col gap-2">
         {playgrounds.map((item) => {
           return (
-            <li key={item.name} className="pb-4 border-b border-dashed border-stone-300 dark:border-stone-700">
+            <li
+              key={item.name}
+              className="pb-4 border-b border-dashed border-stone-300 dark:border-stone-700"
+            >
               <Link href={item.path} className="group block">
                 <span className="flex items-center">
                   <Icon
@@ -24,7 +30,9 @@ export default function Playground() {
                   </h2>
                 </span>
 
-                <p className="group-hover:text-stone-800 dark:group-hover:text-stone-300 transition-colors duration-300">{item.description}</p>
+                <p className="group-hover:text-stone-800 dark:group-hover:text-stone-300 transition-colors duration-300">
+                  {item.description}
+                </p>
               </Link>
             </li>
           );

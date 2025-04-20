@@ -1,7 +1,8 @@
 export const projects = [
   {
     title: "Built on The Rock (BOTR)",
-    description: "A web application designed to help churches manage the mental health of their members efficiently.",
+    description:
+      "A web application designed to help churches manage the mental health of their members efficiently.",
     link: "https://builtontherock.app",
     stack: [
       { label: "Next.js", icon: "logos:nextjs" },
@@ -12,7 +13,8 @@ export const projects = [
   },
   {
     title: "JED",
-    description: "An online event management platform that integrates an offline USSD voting system.",
+    description:
+      "An online event management platform that integrates an offline USSD voting system.",
     link: "https://jed-event.com",
     stack: [
       { label: "Next.js", icon: "logos:nextjs" },
@@ -24,7 +26,8 @@ export const projects = [
   },
   {
     title: "DirtToBright",
-    description: "A web-based platform that allows users to easily book laundry services from Laundry Dirt to Bright",
+    description:
+      "A web-based platform that allows users to easily book laundry services from Laundry Dirt to Bright",
     link: "https://www.dirttobright.com/",
     stack: [
       { label: "Next.js", icon: "logos:nextjs" },
@@ -34,7 +37,8 @@ export const projects = [
   },
   {
     title: "Alpha Pro",
-    description: "A professional landing page developed for a janitorial services company. It shows their services and contact",
+    description:
+      "A professional landing page developed for a janitorial services company. It shows their services and contact",
     link: "https://www.alphaprojanitorial.com/",
     stack: [
       { label: "Next.js", icon: "logos:nextjs" },
@@ -57,7 +61,8 @@ export const projects = [
   },
   {
     title: "Campus Oracle",
-    description: "A digital platform aimed at supporting the mental health of tertiary students in Ghana.",
+    description:
+      "A digital platform aimed at supporting the mental health of tertiary students in Ghana.",
     link: "https://www.campusoracle.org/",
     stack: [
       { label: "Next.js", icon: "logos:nextjs" },
@@ -116,16 +121,19 @@ export const playgrounds = [
   {
     name: "Keypp",
     path: "/playground/keypp",
-    description: "A straightforward typing test application that measures your typing speed and accuracy.",
+    description:
+      "A straightforward typing test application that measures your typing speed and accuracy.",
   },
   {
     name: "Regfatto",
     path: "/playground/regfatto",
-    description: "An interactive environment where you can practice and learn regular expressions. ",
+    description:
+      "An interactive environment where you can practice and learn regular expressions. ",
   },
   {
     name: "Js",
     path: "/playground/js",
-    description: "A JavaScript sandbox where you can experiment with code snippets, and see immediate results.",
+    description:
+      "A JavaScript sandbox where you can experiment with code snippets, and see immediate results.",
   },
 ];
