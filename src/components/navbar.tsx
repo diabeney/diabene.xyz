@@ -6,14 +6,6 @@ import DigitalClock from "@/app/playground/_components/clock";
 import { useTheme } from "next-themes";
 const routes = [
   {
-    label: "Home",
-    path: "/",
-  },
-  // {
-  //   label: "Projects",
-  //   path: "/projects",
-  // },
-  {
     label: "Blog",
     path: "/blog",
   },
@@ -36,7 +28,7 @@ function Navbar() {
   return (
     <nav className=" w-full z-50 flex justify-between bg-(background:--background) dark:bg-(background:--background-dark) py-4 sticky top-0">
       <section className="flex gap-8 items-center ">
-        <Link href="/" className=" font-bold text-amber-500">
+        <Link href="/" className=" font-bold text-amber-500 hover:text-amber-600 transition-all duration-300">
           タウンン
         </Link>
         <div className="">

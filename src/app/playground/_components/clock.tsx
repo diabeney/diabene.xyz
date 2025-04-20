@@ -23,7 +23,7 @@ export default function DigitalClock() {
   }, []);
 
   return (
-    <div className="flex w-full items-center justify-center rounded-lg ">
+    <div className=" hidden sm:flex w-full items-center justify-center rounded-lg ">
       <div className="relative font-mono">
         {time.split("").map((char, index) => (
           <span key={index} className={`inline-block transition-all duration-500 ${char === ":" ? "animate-pulse" : ""}`}>

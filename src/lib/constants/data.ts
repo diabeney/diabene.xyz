@@ -91,13 +91,41 @@ export const projects = [
 ];
 
 export const TypingQuotes = [
-  "I know what it's like to lose. To feel so desperately that you're right, yet to fail nonetheless. It's frightening, turns the legs to jelly. I ask you, to what end? Dread it, run from it, destiny arrives all the same. And now it's here. Or should I say, I am inevitable.",
+  "i know what it is like to lose to feel so desperately that you are right yet to fail nonetheless it is frightening turns the legs to jelly i ask you to what end dread it run from it destiny arrives all the same and now it is here or should i say i am inevitable",
 
-  "I thought by eliminating half of life, the other half would thrive. But you've shown me that's impossible. As long as there are those who remember what was, there will always be those unable to accept what can be. They will resist.",
+  "i thought by eliminating half of life the other half would thrive but you have shown me that is impossible as long as there are those who remember what was there will always be those unable to accept what can be they will resist",
 
-  "The Second Law of Thermodynamics implies that natural processes increase the entropy of the universe. In any energy exchange, if no energy enters or leaves the system, the potential energy will always be less than that of the initial state. This is known as entropy.",
+  "let us have a toast for the douchebags let us have a toast for the assholes let us have a toast for the scumbags every one of them that i know i always find something wrong you have been putting up with my stuff just way too long",
 
-  "The laws of thermodynamics form the backbone of physical science. The First Law states that energy is conserved in any process—it cannot be created or destroyed. The Second Law introduces the concept of entropy and dictates the direction of thermodynamic processes",
+  "i can do this all day you know i keep telling everybody they should move on and grow some do but not us not us if there is a small chance we owe this to everyone who is not in this room to try",
 
-  "Let's have a toast for the douchebags. Let's have a toast for the assholes. Let's have a toast for the scumbags, every one of them that I know. I always find something wrong. You've been putting up with my stuff just way too long.",
+  "you are not the only one cursed with knowledge all my life i dreamed of a day a moment when you would get what you deserved and i was always so disappointed but now you kill and torture and call it mercy",
+
+  "now i am in it and i cannot get out and i feel like there is no way out people talk about real love now i am feeling like i am missing out i am trying to drown the pain but the liquor keep bringing it out",
+
+  "we are in the endgame now i saw fourteen million six hundred and five futures in only one of them do we win so whatever it takes we have to fight we owe it to the fallen",
+
+  "bury me in the ocean with my ancestors that jumped from ships because they knew death was better than bondage just bury me do not cage me i lived free and i die free",
+
+  "you know i had to do it for you i go for mine i got to shine throw your hands up in the sky i am gonna get on this tv mama i amma put you down",
+
+  "i am just a kid from brooklyn whatever happens tomorrow you must promise me one thing that you will stay who you are not a perfect soldier but a good man",
+];
+
+export const playgrounds = [
+  {
+    name: "Keypp",
+    path: "/playground/keypp",
+    description: "A straightforward typing test application that measures your typing speed and accuracy.",
+  },
+  {
+    name: "Regfatto",
+    path: "/playground/regfatto",
+    description: "An interactive environment where you can practice and learn regular expressions. ",
+  },
+  {
+    name: "Js",
+    path: "/playground/js",
+    description: "A JavaScript sandbox where you can experiment with code snippets, and see immediate results.",
+  },
 ];

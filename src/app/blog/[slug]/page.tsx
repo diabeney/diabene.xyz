@@ -26,25 +26,26 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
       <ReadingProgressBar readTime={readTime} />
       <article
         className="blog-content mt-10 prose prose-headings:mt-6 prose-img:rounded-lg prose-img:w-full prose-headings:font-semibold prose-headings:text-stone-600 prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg prose-h5:text-lg prose-h6:text-lg dark:prose-headings:text-white
-        prose-img:h-80 prose-p:text-stone-700 dark:prose-li:text-stone-300 prose-strong:text-inherit prose-li:text-stone-700 dark:prose-p:text-stone-300 prose-img:object-cover prose-img:object-center dark:prose-a:text-stone-300"
+        prose-img:h-auto prose-p:text-stone-700 dark:prose-li:text-stone-300 prose-strong:text-inherit prose-li:text-stone-700 dark:prose-p:text-stone-300 prose-img:object-cover prose-img:object-center dark:prose-a:text-stone-300"
       >
         <Back />
-        <h1>{title}</h1>
-        <div className="flex text-sm items-center justify-between">
+        <h1 className="!leading-10">{title}</h1>
+        <div className="flex text-xs sm:text-sm items-center gap-2 justify-between">
           <section className="flex items-center gap-2">
-            <p className="text-gray-700">{format(createdAt, "MMMM d, yyyy")}</p>
-            <p className="text-gray-700">•</p>
-            <p>{readTime} min read</p>
+            <p className="text-stone-700  !my-0">{format(createdAt, "MMMM d, yyyy")}</p>
+            <p className="text-stone-700 !my-0">•</p>
+            <p className=" !my-0">{readTime} min read</p>
           </section>
-          <p className="text-gray-700">
+          <p className="text-stone-700 !my-0">
             Updated{" "}
             {formatDistanceToNow(updatedAt, {
               addSuffix: true,
             })}
           </p>
         </div>
-        <Image src={coverImage} alt={slug} width={500} height={500} />
-
+        <div className="w-full h-auto mt-10 max-h-72 sm:max-h-96 overflow-hidden rounded-lg">
+          <Image src={coverImage} alt={slug} width={500} height={500} />
+        </div>
         <Post />
       </article>
     </BlogPostWrapper>

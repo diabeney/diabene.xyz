@@ -40,7 +40,7 @@ html {
   scrollbar-gutter: stable;
 }
 body {
-  @apply font-(family-name:--font-paragraph) font-medium leading-relaxed text-stone-600 dark:text-stone-400
+  @apply font-(family-name:--font-paragraph) font-medium leading-relaxed text-pretty tracking-tight text-stone-600 dark:text-stone-400 my-[1lh]
 }
 
 h1, h2, h3, h4, h5, h6 {

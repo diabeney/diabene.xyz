@@ -1,35 +1,18 @@
+import { playgrounds } from "@/lib/constants/data";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
-
-const playgrounds = [
-  {
-    name: "Keypp",
-    path: "/playground/keypp",
-    description: "A straightforward typing test application that measures your typing speed and accuracy.",
-  },
-  {
-    name: "Regfatto",
-    path: "/playground/regfatto",
-    description: "An interactive environment where you can practice and learn regular expressions. ",
-  },
-  {
-    name: "Js",
-    path: "/playground/js",
-    description: "A JavaScript sandbox where you can experiment with code snippets, and see immediate results.",
-  },
-];
 
 export default function Playground() {
   return (
     <div>
       <div>
-        <h1 className="text-4xl  pb-1 font-bold mt-8">Stuck Trayce</h1>
+        <h1 className="text-4xl  pb-1 font-bold mt-8">Astroworld!</h1>
         <p>Collection of interactive projects. These are my own minimalistic versions of tools I use frequently :{")"}</p>
       </div>
       <ul className="mt-10 flex flex-col gap-2">
         {playgrounds.map((item) => {
           return (
-            <li key={item.name} className="pb-4 [&:not(:last-child)]:border-b [&:not(:last-child)]:border-stone-300 dark:[&:not(:last-child)]:border-stone-700">
+            <li key={item.name} className="pb-4 border-b border-dashed border-stone-300 dark:border-stone-700">
               <Link href={item.path} className="group block">
                 <span className="flex items-center">
                   <Icon

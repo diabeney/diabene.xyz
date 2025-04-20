@@ -1,139 +1,14 @@
 "use client";
 
 import { Icon } from "@iconify/react/dist/iconify.js";
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { TypingQuotes } from "@/lib/constants/data";
-
-type TestStatus = "idle" | "running" | "paused" | "finished";
-
-const INACTIVITY_TIMEOUT_MS = 5000;
+import React, { useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useKeypp } from "../../../lib/hooks/useKeypp";
 
 export default function Keypp() {
-  const [input, setInput] = useState<string>("");
-  const [quote, setQuote] = useState<string>("");
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const [endTime, setEndTime] = useState<number | null>(null);
-  const [status, setStatus] = useState<TestStatus>("idle");
-  const [errors, setErrors] = useState<number[]>([]);
+  const { input, quote, status, errors, restartTest, resetTest, calculateWPM, calculateAccuracy, calculateTimeElapsed, handleKeyDown } = useKeypp();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const getRandomQuote = useCallback((): string => {
-    const randomIndex = Math.floor(Math.random() * TypingQuotes.length);
-    return TypingQuotes[randomIndex];
-  }, []);
-
-  const clearInactivityTimer = useCallback(() => {
-    if (inactivityTimerRef.current) {
-      clearTimeout(inactivityTimerRef.current);
-      inactivityTimerRef.current = null;
-    }
-  }, []);
-
-  const restartTest = useCallback(() => {
-    setInput("");
-    setStartTime(null);
-    setEndTime(null);
-    setStatus("idle");
-    setErrors([]);
-    clearInactivityTimer();
-
-    // Return focus to the container after clicking restart.
-    setTimeout(() => {
-      containerRef.current?.focus();
-    }, 0);
-  }, [clearInactivityTimer]);
-
-  const resetTest = useCallback(() => {
-    restartTest();
-    setQuote(getRandomQuote());
-
-    // Return focus to the container after clicking shuffle
-    setTimeout(() => {
-      containerRef.current?.focus();
-    }, 0);
-  }, [getRandomQuote, restartTest]);
-
-  useEffect(() => {
-    resetTest();
-    return clearInactivityTimer;
-  }, [resetTest, clearInactivityTimer]);
-
-  const resetInactivityTimer = useCallback(() => {
-    clearInactivityTimer();
-
-    if (status === "running") {
-      inactivityTimerRef.current = setTimeout(() => {
-        setStatus("paused");
-      }, INACTIVITY_TIMEOUT_MS);
-    }
-  }, [status, clearInactivityTimer]);
-
-  const calculateWPM = useCallback((): number => {
-    if (!startTime || !endTime) return 0;
-    const timeInMinutes = (endTime - startTime) / 60000;
-    const words = input.trim().split(/\s+/).length;
-    return Math.round(words / timeInMinutes);
-  }, [startTime, endTime, input]);
-
-  const calculateAccuracy = useCallback((): number => {
-    if (input.length === 0) return 100;
-    const correctChars = input.split("").filter((char, i) => char === quote[i]).length;
-    return Math.round((correctChars / input.length) * 100);
-  }, [input, quote]);
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent): void => {
-      if (status === "finished") return;
-
-      if (status === "paused" && e.key !== " " && e.key !== "Enter") return;
-
-      if (status === "paused" && (e.key === " " || e.key === "Enter")) {
-        setStatus("running");
-        if (!startTime) {
-          setStartTime(Date.now());
-        }
-        e.preventDefault();
-        resetInactivityTimer();
-        return;
-      }
-
-      if (status === "idle") {
-        setStartTime(Date.now());
-        setStatus("running");
-      }
-
-      const currentPos = input.length;
-      const currentChar = quote[currentPos];
-
-      if (e.key.length !== 1 && e.key !== "Backspace") return;
-
-      resetInactivityTimer();
-
-      if (e.key === "Backspace") {
-        if (input.length > 0) {
-          setInput((prev) => prev.slice(0, -1));
-          setErrors((prev) => prev.filter((i) => i !== currentPos - 1));
-        }
-        return;
-      }
-
-      const isCorrect = e.key === currentChar;
-      setInput((prev) => prev + e.key);
-
-      if (!isCorrect) {
-        setErrors((prev) => [...prev, currentPos]);
-      }
-
-      if (currentPos + 1 === quote.length) {
-        setEndTime(Date.now());
-        setStatus("finished");
-        clearInactivityTimer();
-      }
-    },
-    [status, startTime, input, quote, resetInactivityTimer, clearInactivityTimer]
-  );
 
   const renderText = useCallback(() => {
     return quote.split("").map((char, index) => {
@@ -145,7 +20,7 @@ export default function Keypp() {
         className = "underline decoration-2 ";
       }
 
-      // Add blur effect when status is paused
+      // Adding a blur effect when status is paused
       if (status === "paused") {
         className += " blur-[4px]";
       }
@@ -159,33 +34,28 @@ export default function Keypp() {
   }, [quote, input, status]);
 
   useEffect(() => {
+    resetTest();
+
     if (containerRef.current) {
       containerRef.current.focus();
     }
-  }, []);
+  }, [resetTest]);
 
   return (
     <div ref={containerRef} tabIndex={0} onKeyDown={handleKeyDown} className="mt-14 outline-none">
       <div className="flex justify-between mb-4">
-        <section className="flex gap-4">
-          <div className="text-xs">
-            <span className="text-stone-400">Speed: </span>
-            <span className="text-stone-500">{status === "finished" ? `${calculateWPM()}wpm` : "N/A"}</span>
-          </div>
-          <div className="text-xs">
-            <span className="text-stone-400">Accuracy: </span>
-            <span className="text-stone-500">{status !== "idle" ? `${calculateAccuracy()}%` : "N/A"}</span>
-          </div>
-          <div className="text-xs">
-            <span className="text-stone-400">Errors: </span>
-            <span className="text-stone-500">{errors.length}</span>
+        <section className="flex items-center">
+          <div className="text-sm font-mono flex items-center gap-1">
+            <Icon icon="heroicons:clock" className="w-3.5 h-3.5 text-stone-400" />
+            <span className="text-stone-400">Time: </span>
+            <span className="text-stone-500">{calculateTimeElapsed()}</span>
           </div>
         </section>
         <div className="flex gap-2">
           <button
             disabled={status === "idle"}
             onClick={restartTest}
-            className="text-xs flex gap-2 items-center bg-stone-300 text-stone-900 dark:text-stone-400 dark:bg-stone-800/50 px-2 py-1 rounded-md disabled:opacity-50"
+            className="text-xs flex gap-2 items-center bg-green-300 text-green-900 dark:text-green-200 dark:bg-green-900 px-2 py-1 rounded-md hover:opacity-90 transition-opacity disabled:opacity-50"
           >
             Restart
             <Icon icon={"ph:arrow-clockwise"} />
@@ -199,14 +69,63 @@ export default function Keypp() {
           </button>
         </div>
       </div>
-      <div className="text-xl relative font-mono rounded-lg mb-4">
-        {renderText()}
-        {status === "paused" && (
-          <div className="absolute text-sm inset-0 flex items-center justify-center">
-            <p>Press space or enter to activate</p>
-          </div>
+      <AnimatePresence mode="wait">
+        {status !== "finished" ? (
+          <motion.div key="typing-area" initial={{ opacity: 1 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.5 }} className="relative mb-4">
+            <div className=" font-mono text-xl my-8">
+              {renderText()}
+              {status === "paused" && (
+                <div className="absolute text-sm inset-0 flex items-center justify-center">
+                  <p>Press space or enter to activate</p>
+                </div>
+              )}
+            </div>
+            <small className="text-xs text-stone-500">You can click the text to focus if it's unresponsive.</small>
+          </motion.div>
+        ) : (
+          <motion.div key="results-card" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }} className="">
+            <h3 className="text-xl font-medium mb-4 text-stone-800 dark:text-stone-200">Results</h3>
+            <div className="grid grid-cols-2 font-mono gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col items-center justify-center bg-green-100/80 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-4"
+              >
+                <span className="text-3xl font-bold text-green-800 dark:text-green-300">{calculateWPM()}</span>
+                <span className="text-sm text-green-600 dark:text-green-400">WPM</span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col items-center justify-center bg-yellow-100/80 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4"
+              >
+                <span className="text-3xl font-bold text-yellow-800 dark:text-yellow-300">{calculateAccuracy()}%</span>
+                <span className="text-sm text-yellow-600 dark:text-yellow-400">Accuracy</span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col items-center justify-center bg-red-100/80 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4"
+              >
+                <span className="text-3xl font-bold text-red-800 dark:text-red-300">{errors.length}</span>
+                <span className="text-sm text-red-600 dark:text-red-400">Errors</span>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex flex-col items-center justify-center bg-teal-100/80 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-4"
+              >
+                <span className="text-3xl font-bold text-teal-800 dark:text-teal-300">{calculateTimeElapsed()}</span>
+                <span className="text-sm text-teal-600 dark:text-teal-400">Time</span>
+              </motion.div>
+            </div>
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </div>
   );
 }

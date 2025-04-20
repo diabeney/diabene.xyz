@@ -193,7 +193,7 @@ export default function Regfatto() {
     <div className="mt-10">
       <div className="">
         <div>
-          <section className="flex gap-2.5 mb-2.5">
+          <section className="flex flex-col sm:flex-row gap-2.5 mb-2.5">
             <div className="w-full">
               <h6 className="mb-2">Regular Expression (without //)</h6>
               <input
@@ -203,21 +203,21 @@ export default function Regfatto() {
                 placeholder="Enter regex pattern without the slashes"
                 className={` w-full p-2 font-mono border ${
                   isValidRegex ? "border-stone-300 dark:border-stone-700" : "border-red-500"
-                } rounded text-stone-900 dark:focus:border-stone-600 focus:border-stone-400 dark:text-stone-100 focus:outline-none `}
+                } rounded text-stone-900 dark:focus:border-stone-600 focus:border-stone-400 dark:text-stone-100 focus:outline-none dark:bg-stone-400/5`}
               />
               <small className="text-stone-500 dark:text-stone-400 text-xs block mt-1">
                 Avoid patterns that cause <ExternalLink href="https://www.regular-expressions.info/catastrophic.html">Catastrophic Backtracking</ExternalLink>{" "}
                 to prevent freezing.
               </small>
             </div>
-            <div>
+            <div className="w-full sm:w-32 mt-4 md:mt-0">
               <h6 className="mb-2">Flags</h6>
               <input
                 type="text"
                 value={displayedRegexFlags}
                 onChange={handleFlagsChange}
                 placeholder="e.g. gi"
-                className="w-32 p-2 font-mono border text-stone-900 dark:text-stone-300 dark:focus:border-stone-600 focus:bord border-stone-300 focus:border-stone-400 dark:border-stone-700 rounded focus:outline-none  "
+                className=" w-full p-2 font-mono border text-stone-900 dark:text-stone-300 dark:focus:border-stone-600 focus:bord border-stone-300 focus:border-stone-400 dark:border-stone-700 rounded focus:outline-none dark:bg-stone-400/5 "
               />
             </div>
           </section>
@@ -229,7 +229,7 @@ export default function Regfatto() {
             value={displayedInputText}
             placeholder="Insert your test string here"
             onChange={(e) => setDisplayedInputText(e.target.value)}
-            className="w-full p-2.5 font-mono text-stone-900 dark:text-stone-300 dark:focus:border-stone-600 focus:bord text-base resize-none leading-relaxed border focus:border-stone-400 border-stone-300 dark:border-stone-700 rounded focus:outline-none  "
+            className="w-full p-2.5 font-mono text-stone-900 dark:text-stone-300 dark:focus:border-stone-600 focus:bord text-base resize-none leading-relaxed border focus:border-stone-400 border-stone-300 dark:border-stone-700 rounded focus:outline-none dark:bg-stone-400/5 "
           />
           <div className=" text-stone-700 dark:text-stone-300">
             {matches.filter((m) => m.isMatch).length > 0 ? (
