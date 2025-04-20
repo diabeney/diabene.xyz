@@ -13,6 +13,13 @@ const nextConfig = {
       },
     ],
   },
+  eslint: {
+    dirs: ["src"],
+  },
+  reactStrictMode: false,
+  experimental: {
+    optimizePackageImports: ["@iconify/react"],
+  },
 };
 
 const withMDX = createMDX({

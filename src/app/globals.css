@@ -6,6 +6,18 @@
   --foreground: oklch(0.17 0.0041 106.83);
   --background-dark: var(--foreground);
   --foreground-dark: var(--background);
+  --focus-ring: 1px solid #f59e0b;
+}
+
+
+*:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+*:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 1px;
 }
 
 .dark ::selection {

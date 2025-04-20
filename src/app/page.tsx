@@ -44,9 +44,7 @@ export default function Home() {
         >
           <Icon icon={"hugeicons:new-twitter"} className=" w-6 h-6" />
         </a>
-        {/* <a href="https://twitter.com/diabeneyy" target="_blank" rel="noopener noreferrer" className=" opacity-60 hover:opacity-100 transition-all duration-300">
-          <Icon icon={"iconoir:discord"} className=" w-6 h-6" />
-        </a> */}
+
         <div className="w-full relative my-2">
           <hr className="w-full border-stone-200 dark:border-stone-700" />
           <div className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden">
