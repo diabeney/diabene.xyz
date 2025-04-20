@@ -1,10 +1,9 @@
 "use client";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
-import useSwitchTheme from "@/lib/hooks/theme";
 import { usePathname } from "next/navigation";
 import DigitalClock from "@/app/playground/_components/clock";
-
+import { useTheme } from "next-themes";
 const routes = [
   {
     label: "Home",
@@ -25,7 +24,7 @@ const routes = [
 ];
 
 function Navbar() {
-  const { mode, toggleTheme } = useSwitchTheme();
+  const { theme, setTheme } = useTheme();
   const pathname = usePathname();
 
   const isActive = (href: string) => {
@@ -57,8 +56,11 @@ function Navbar() {
       </section>
       <section className="flex gap-2 items-center">
         <DigitalClock />
-        <button onClick={toggleTheme} className=" aspect-square p-1 w-fit grid place-items-center border rounded-full cursor-pointer ">
-          {mode === "light" ? <Icon icon={`mingcute:sun-fill`} /> : <Icon icon={`mingcute:moon-fill`} />}
+        <button
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          className=" aspect-square p-1 w-fit grid place-items-center border rounded-full cursor-pointer "
+        >
+          {theme === "light" ? <Icon icon={`mingcute:sun-fill`} /> : <Icon icon={`mingcute:moon-fill`} />}
         </button>
       </section>
     </nav>
