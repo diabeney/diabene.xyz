@@ -3,7 +3,8 @@
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import matter from "gray-matter";
-import { __CONTENT_DIR } from "@/app/blog/[slug]/page";
+
+const __CONTENT_DIR = path.join(process.cwd(), "src", "contents");
 
 export type ContentMetadata = {
   title: string;
@@ -31,7 +32,10 @@ export async function getContentMetadata(slug: string): Promise<ContentMetadata>
   const filePath = path.join(__CONTENT_DIR, `${slug}.mdx`);
 
   try {
-    const [stats, fileContent] = await Promise.all([fs.stat(filePath), fs.readFile(filePath, "utf-8")]);
+    const [stats, fileContent] = await Promise.all([
+      fs.stat(filePath),
+      fs.readFile(filePath, "utf-8"),
+    ]);
 
     const { data: frontmatter, content } = matter(fileContent);
 

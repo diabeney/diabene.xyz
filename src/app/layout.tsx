@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "../components/navbar";
 import ThemeProviderWithMeta from "../lib/provider";
 import { Analytics } from "@vercel/analytics/react";
+import Link from "next/link";
 
 const generalSans = localFont({
   src: [
@@ -35,6 +36,7 @@ const generalSans = localFont({
     },
   ],
   variable: "--font-paragraph",
+  display: "swap",
 });
 
 const satoshi = localFont({
@@ -61,18 +63,55 @@ const satoshi = localFont({
     },
   ],
   variable: "--font-heading",
+  display: "swap",
 });
 
 const ubuntuMono = Ubuntu_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   weight: ["400", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Diabene",
+  title: {
+    template: "%s | Diabene",
+    default: "Diabene",
+  },
   description:
     "A Ghanaian software engineer with interest in user interfaces, backend development, open-source projects, and developer tools. Mostly writing software in TypeScript and Go.",
+  keywords: ["Software Engineer", "Web Developer", "Open Source"],
+  authors: [{ name: "Diabene Yaw Addo" }],
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://diabene.xyz"),
+  openGraph: {
+    title: "Diabene",
+    description: "Software Engineer",
+    url: process.env.NEXT_PUBLIC_BASE_URL,
+    siteName: "Diabene Portfolio",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`,
+        width: 800,
+        height: 600,
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Diabene",
+    description: "Software Engineer",
+    creator: "@diabeneyy",
+    images: [`${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`],
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  minimumScale: 1,
+  maximumScale: 5,
+  userScalable: true,
 };
 
 export default function RootLayout({
@@ -82,26 +121,42 @@ export default function RootLayout({
 }>) {
   const currentYear = new Date().getFullYear();
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
         className={`${satoshi.variable} ${ubuntuMono.variable} p-4 ${generalSans.variable} pt-8 md:pt-20 bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
       >
         <Analytics />
         <ThemeProviderWithMeta>
-          {/* <Provider> */}
-          <div className="max-w-screen-sm mx-auto">
+          <div className="max-w-screen-sm  mx-auto">
+            <a
+              href="#content"
+              className="sr-only focus:not-sr-only focus:absolute focus:p-2 focus:bg-amber-500 focus:text-white focus:z-50 focus-visible:focus:ring-2 focus-visible:focus:ring-white"
+            >
+              Skip to content
+            </a>
             <Navbar />
-            {children}
-            <footer className=" text-xs space-y-4 my-10 text-stone-500">
+            <main id="content" tabIndex={-1} className="focus:outline-none">
+              {children}
+            </main>
+            <footer className="text-xs space-y-4 my-10 text-stone-500" role="contentinfo">
               <div className="w-full relative my-2">
-                <hr className="w-full border-stone-200 dark:border-stone-700" />
-                <div className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden">
+                <hr className="w-full border-stone-200 dark:border-stone-700" aria-hidden="true" />
+                <div
+                  className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden"
+                  aria-hidden="true"
+                >
                   <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-stone-500 dark:via-stone-400 to-transparent animate-shootingStar"></div>
                 </div>
               </div>
-              <div className=" flex items-center mt-6 gap-2 justify-between">
+              <div className="flex items-center mt-6 gap-2 justify-between">
                 <p>&copy; {currentYear} Diabene Yaw Addo | All rights reserved</p>
-                <a className=" font-extrabold text-amber-500">タウンン</a>
+                <Link
+                  className="font-extrabold text-amber-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded px-1"
+                  href="/"
+                  aria-label="Home"
+                >
+                  タウンン
+                </Link>
               </div>
             </footer>
           </div>

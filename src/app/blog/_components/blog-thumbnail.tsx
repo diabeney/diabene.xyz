@@ -24,7 +24,12 @@ export default function BlogThumbnail({ posts }: { posts: ContentMetadata[] }) {
                 })}
               </span>
               <span className="flex items-center gap-1">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-3 w-3"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
                   <path
                     fillRule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
@@ -36,7 +41,9 @@ export default function BlogThumbnail({ posts }: { posts: ContentMetadata[] }) {
             </p>
           </div>
         </div>
-        <p className=" text-stone-800 dark:text-stone-400 group-hover:underline group-hover:dark:text-stone-200 line-clamp-2">{post.title}</p>
+        <p className=" text-stone-800 dark:text-stone-400 group-hover:underline group-hover:dark:text-stone-200 line-clamp-2">
+          {post.title}
+        </p>
       </Link>
     </li>
   ));

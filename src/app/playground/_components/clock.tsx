@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function DigitalClock() {
   const [time, setTime] = useState("");
+  const [formattedTime, setFormattedTime] = useState("");
 
   useEffect(() => {
     const updateClock = () => {
@@ -13,6 +14,7 @@ export default function DigitalClock() {
       const seconds = now.getSeconds().toString().padStart(2, "0");
 
       setTime(`${hours}:${minutes}:${seconds}`);
+      setFormattedTime(`${hours} hours, ${minutes} minutes, and ${seconds} seconds`);
     };
 
     updateClock();
@@ -23,14 +25,26 @@ export default function DigitalClock() {
   }, []);
 
   return (
-    <div className=" hidden sm:flex w-full items-center justify-center rounded-lg ">
-      <div className="relative font-mono">
+    <div
+      className="hidden sm:flex w-full items-center justify-center rounded-lg"
+      role="timer"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <time className="relative font-mono" aria-label={formattedTime} dateTime={`T${time}`}>
         {time.split("").map((char, index) => (
-          <span key={index} className={`inline-block transition-all duration-500 ${char === ":" ? "animate-pulse" : ""}`}>
+          <span
+            key={index}
+            className={`inline-block transition-all duration-500 ${
+              char === ":" ? "animate-pulse" : ""
+            }`}
+            aria-hidden="true"
+          >
             {char}
           </span>
         ))}
-      </div>
+        <span className="sr-only">{formattedTime}</span>
+      </time>
     </div>
   );
 }

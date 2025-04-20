@@ -7,7 +7,8 @@ import BlogPostWrapper from "../_components/blog-post-wrapper";
 import ReadingProgressBar from "../_components/reading-progress-bar";
 import Image from "next/image";
 
-export const __CONTENT_DIR = path.join(process.cwd(), "src", "contents");
+
+const __CONTENT_DIR = path.join(process.cwd(), "src", "contents");
 
 export async function generateStaticParams() {
   const files = await fs.readdir(__CONTENT_DIR);

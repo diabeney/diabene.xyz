@@ -14,7 +14,9 @@ type MatchGroup = {
 const DEBOUNCE_DELAY = 500;
 
 export default function Regfatto() {
-  const [displayedInputText, setDisplayedInputText] = useState("I tried some things that made you wanna stay");
+  const [displayedInputText, setDisplayedInputText] = useState(
+    "I tried some things that made you wanna stay"
+  );
   const [displayedRegexPattern, setDisplayedRegexPattern] = useState("\\b\\w{4}\\b");
   const [displayedRegexFlags, setDisplayedRegexFlags] = useState("g");
 
@@ -172,7 +174,9 @@ export default function Regfatto() {
           isMatch: false,
         },
       ]);
-      setExplanation(`Invalid regular expression: ${e instanceof Error ? e.message : "Unknown error"}`);
+      setExplanation(
+        `Invalid regular expression: ${e instanceof Error ? e.message : "Unknown error"}`
+      );
     }
   }, [debouncedInputText, debouncedRegexPattern, regexFlags]);
 
@@ -206,7 +210,10 @@ export default function Regfatto() {
                 } rounded text-stone-900 dark:focus:border-stone-600 focus:border-stone-400 dark:text-stone-100 focus:outline-none dark:bg-stone-400/5`}
               />
               <small className="text-stone-500 dark:text-stone-400 text-xs block mt-1">
-                Avoid patterns that cause <ExternalLink href="https://www.regular-expressions.info/catastrophic.html">Catastrophic Backtracking</ExternalLink>{" "}
+                Avoid patterns that cause{" "}
+                <ExternalLink href="https://www.regular-expressions.info/catastrophic.html">
+                  Catastrophic Backtracking
+                </ExternalLink>{" "}
                 to prevent freezing.
               </small>
             </div>
@@ -239,7 +246,10 @@ export default function Regfatto() {
                   .filter((m) => m.isMatch)
                   .map((match, i) => (
                     <li key={i} className="">
-                      <button onClick={() => setCursorPosition(match.start)} className="underline opacity-60 hover:opacity-100 transition-opacity duration-300">
+                      <button
+                        onClick={() => setCursorPosition(match.start)}
+                        className="underline opacity-60 hover:opacity-100 transition-opacity duration-300"
+                      >
                         {match.text}
                       </button>
                     </li>
@@ -252,7 +262,9 @@ export default function Regfatto() {
         </div>
         <div className="mt-6 ">
           <h2 className="text-xl font-semibold mb-2">Explanation</h2>
-          <pre className="font-mono text-sm text-stone-700 dark:text-stone-300 whitespace-pre-wrap">{explanation}</pre>
+          <pre className="font-mono text-sm text-stone-700 dark:text-stone-300 whitespace-pre-wrap">
+            {explanation}
+          </pre>
         </div>
       </div>
     </div>

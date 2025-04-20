@@ -7,7 +7,8 @@ export default function RegexPage() {
       <Back />
       <h1 className="text-4xl  pb-1 font-bold mt-8">Regfatto</h1>
       <p className="dark:text-stone-400 text-stone-500  mt-2">
-        Inspired by <ExternalLink href="https://regex101.com/">regex101.com</ExternalLink>, regular expressions explanations made easy.
+        Inspired by <ExternalLink href="https://regex101.com/">regex101.com</ExternalLink>, regular
+        expressions explanations made easy.
       </p>
       <Regfatto />
     </div>
