@@ -1,5 +1,6 @@
 import JsPlayground from "./_components/js-playground";
 import Back from "@/components/back";
+import ExternalLink from "@/components/external-link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -50,6 +51,12 @@ export default function JsPage() {
         A playground for testing and experimenting with JavaScript code.
       </p>
       <JsPlayground />
+      <small>
+        Source code available at{" "}
+        <ExternalLink href="https://github.com/diabeney/diabene.xyz/blob/main/src/app/playground/js/page.tsx">
+          @topia/github.io/jsplay
+        </ExternalLink>
+      </small>
     </div>
   );
 }

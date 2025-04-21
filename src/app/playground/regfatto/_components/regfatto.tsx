@@ -20,7 +20,8 @@ export default function Regfatto() {
   const [displayedRegexPattern, setDisplayedRegexPattern] = useState("\\b\\w{4}\\b");
   const [displayedRegexFlags, setDisplayedRegexFlags] = useState("g");
 
-  // Using debounced state to prevent unnecessary re-renders, thereby preventing the regex from freezing. Flags don't usually need debouncing.
+  // Using debounced state to prevent unnecessary re-renders to prevent the
+  // page regex from freezing. Not debouncing the flags cos flags don't usually need debouncing.
   const [debouncedInputText, setDebouncedInputText] = useState(displayedInputText);
   const [debouncedRegexPattern, setDebouncedRegexPattern] = useState(displayedRegexPattern);
   const [regexFlags, setRegexFlags] = useState(displayedRegexFlags);
@@ -240,21 +241,23 @@ export default function Regfatto() {
           />
           <div className=" text-stone-700 dark:text-stone-300">
             {matches.filter((m) => m.isMatch).length > 0 ? (
-              <ul className="list-none p-0 flex gap-2 items-center">
+              <>
                 <p className="">Matches ({matches.filter((m) => m.isMatch).length}) :</p>
-                {matches
-                  .filter((m) => m.isMatch)
-                  .map((match, i) => (
-                    <li key={i} className="">
-                      <button
-                        onClick={() => setCursorPosition(match.start)}
-                        className="underline opacity-60 hover:opacity-100 transition-opacity duration-300"
-                      >
-                        {match.text}
-                      </button>
-                    </li>
-                  ))}
-              </ul>
+                <ul className="list-none p-0 flex flex-wrap gap-2 items-center">
+                  {matches
+                    .filter((m) => m.isMatch)
+                    .map((match, i) => (
+                      <li key={i} className="">
+                        <button
+                          onClick={() => setCursorPosition(match.start)}
+                          className="underline opacity-60 hover:opacity-100 transition-opacity duration-300"
+                        >
+                          {match.text}
+                        </button>
+                      </li>
+                    ))}
+                </ul>
+              </>
             ) : (
               <p className="text-stone-500 dark:text-stone-400">No matches found</p>
             )}
