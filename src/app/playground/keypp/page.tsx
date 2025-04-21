@@ -1,4 +1,4 @@
-import Keypp from "../_components/keypp";
+import Keypp from "./_components/keypp";
 import Back from "@/components/back";
 import { Metadata } from "next";
 
