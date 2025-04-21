@@ -3,7 +3,7 @@ import { TypingQuotes } from "@/lib/constants/data";
 
 type TestStatus = "idle" | "running" | "paused" | "finished";
 
-const INACTIVITY_TIMEOUT_MS = 5000;
+const INACTIVITY_TIMEOUT_MS = 3000;
 
 export function useKeypp() {
   const [input, setInput] = useState<string>("");
@@ -78,6 +78,12 @@ export function useKeypp() {
     }
   }, [status, clearInactivityTimer]);
 
+  useEffect(() => {
+    if (status === "running") {
+      resetInactivityTimer();
+    }
+  }, [status, resetInactivityTimer]);
+
   const calculateWPM = useCallback((): number => {
     if (!startTime || !endTime) return 0;
     const timeInMinutes = (endTime - startTime) / 60000;
@@ -124,7 +130,6 @@ export function useKeypp() {
           setStartTime(Date.now());
         }
         e.preventDefault();
-        resetInactivityTimer();
         return;
       }
 
