@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 export default function Back() {
   const router = useRouter();
   return (
-    <Link href="/blog" onClick={() => router.back()} className="flex items-center gap-2 w-fit">
+    <button onClick={() => router.back()} className="flex items-center gap-2 w-fit">
       <Icon icon={"material-symbols-light:arrow-back"} />
       Go back
-    </Link>
+    </button>
   );
 }
