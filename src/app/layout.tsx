@@ -93,7 +93,12 @@ export const metadata: Metadata = {
       {
         url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
         width: 1200,
-        height: 800,
+        height: 1000,
+      },
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+        width: 1200,
+        height: 1000,
       },
     ],
     type: "website",
@@ -102,12 +107,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Diabene Yaw Addo",
     description: "JavaScript is the truth | Software Engineer",
-    creator: "@diabeneyy",
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
         width: 1200,
-        height: 800,
+        height: 1000,
+      },
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+        width: 1200,
+        height: 1000,
       },
     ],
   },

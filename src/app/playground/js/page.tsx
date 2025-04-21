@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Truth JS",
     description: "A playground for testing and experimenting with JavaScript code.",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/playground/js`,
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
@@ -20,9 +21,10 @@ export const metadata: Metadata = {
         height: 800,
       },
     ],
-    type: "website",
+    type: "article",
   },
   twitter: {
+    card: "summary_large_image",
     title: "Truth JS",
     description: "A playground for testing and experimenting with JavaScript code.",
     images: [

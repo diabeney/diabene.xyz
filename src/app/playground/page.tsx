@@ -11,21 +11,23 @@ export const metadata: Metadata = {
     title: "Astroworld! - Collection of interactive projects",
     description:
       "Collection of interactive projects. These are my own minimalistic versions of tools I use frequently",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/playground`,
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
         width: 1200,
-        height: 800,
+        height: 1000,
       },
       {
         url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
         width: 1200,
-        height: 800,
+        height: 1000,
       },
     ],
-    type: "website",
+    type: "article",
   },
   twitter: {
+    card: "summary_large_image",
     title: "Astroworld! - Collection of interactive projects",
     description:
       "Collection of interactive projects. These are my own minimalistic versions of tools I use frequently",
