@@ -1,5 +1,3 @@
-"use server";
-
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import matter from "gray-matter";
@@ -24,7 +22,7 @@ const DEFAULT_METADATA: Partial<ContentMetadata> = {
   description: "",
   keywords: [],
   author: "Diabene Yaw Addo",
-  published: true,
+  published: false,
 };
 
 export async function getContentMetadata(slug: string): Promise<ContentMetadata> {
@@ -93,7 +91,7 @@ export async function getAllContentMetadata(options?: {
       allMetadata = allMetadata.filter((meta) => meta.published === options.published);
     }
 
-    // Apply sorting
+    // sort by provided options
     if (options?.sortBy) {
       const sortBy = options.sortBy;
       const direction = options.sortDirection === "asc" ? 1 : -1;

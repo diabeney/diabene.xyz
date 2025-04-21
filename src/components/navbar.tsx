@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
-import DigitalClock from "@/app/playground/_components/clock";
+import DigitalClock from "@/components/clock";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 

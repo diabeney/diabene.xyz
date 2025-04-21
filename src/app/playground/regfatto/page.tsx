@@ -1,5 +1,5 @@
 import Back from "@/components/back";
-import Regfatto from "../_components/regfatto";
+import Regfatto from "./_components/regfatto";
 import ExternalLink from "@/components/external-link";
 import { Metadata } from "next";
 

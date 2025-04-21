@@ -1,4 +1,4 @@
-import JsPlayground from "../_components/js-playground";
+import JsPlayground from "./_components/js-playground";
 import Back from "@/components/back";
 import { Metadata } from "next";
 
