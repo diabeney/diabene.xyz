@@ -52,6 +52,14 @@ export default function RegexPage() {
         expressions explanations made easy.
       </p>
       <Regfatto />
+      <div className="mt-8">
+        <small>
+          Source code available at{" "}
+          <ExternalLink href="https://github.com/diabeney/diabene.xyz/blob/main/src/app/playground/regfatto/page.tsx">
+            @topia/github.io/regfatto
+          </ExternalLink>
+        </small>
+      </div>
     </div>
   );
 }

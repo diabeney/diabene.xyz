@@ -1,6 +1,7 @@
 import Keypp from "./_components/keypp";
 import Back from "@/components/back";
 import { Metadata } from "next";
+import ExternalLink from "@/components/external-link";
 
 export const metadata: Metadata = {
   title: "Keypp",
@@ -51,6 +52,14 @@ export default function KeyppPage() {
         A minimal, interactive typing speed app.
       </p>
       <Keypp />
+      <div className="mt-8">
+        <small>
+          Source code available at{" "}
+          <ExternalLink href="https://github.com/diabeney/diabene.xyz/tree/main/src/app/playground/keypp">
+            @topia/github.io/keypp
+          </ExternalLink>
+        </small>
+      </div>
     </div>
   );
 }
