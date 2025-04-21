@@ -19,6 +19,7 @@ export default function Keypp() {
     handleKeyDown,
   } = useKeypp();
 
+  const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const renderText = useCallback(() => {
@@ -29,10 +30,9 @@ export default function Keypp() {
         className =
           input[index] === char ? "opacity-40" : "dark:text-red-400 text-red-600 opacity-40";
       } else if (index === input.length) {
-        className = "underline decoration-2 ";
+        className = "underline decoration-2";
       }
 
-      // Adding a blur effect when status is paused
       if (status === "paused") {
         className += " blur-[4px]";
       }
@@ -47,14 +47,25 @@ export default function Keypp() {
 
   useEffect(() => {
     resetTest();
+    if (inputRef.current) inputRef.current.focus();
+  }, [resetTest, inputRef]);
 
-    if (containerRef.current) {
-      containerRef.current.focus();
-    }
-  }, [resetTest]);
+  const handleShuffleClick = () => {
+    resetTest();
+    if (inputRef.current) inputRef.current.focus();
+  };
 
   return (
-    <div ref={containerRef} tabIndex={0} onKeyDown={handleKeyDown} className="mt-14 outline-none">
+    <div
+      ref={containerRef}
+      tabIndex={-1}
+      onKeyDown={handleKeyDown}
+      className="mt-14 outline-none focus:outline-none"
+      onClick={() => inputRef.current?.focus()}
+    >
+      {/* Hidden input for triggering mobile keyboard */}
+      <input ref={inputRef} className="absolute opacity-0 pointer-events-none" autoFocus />
+
       <div className="flex justify-between mb-4">
         <section className="flex items-center">
           <div className="text-sm font-mono flex items-center gap-1">
@@ -73,7 +84,7 @@ export default function Keypp() {
             <Icon icon={"ph:arrow-clockwise"} />
           </button>
           <button
-            onClick={resetTest}
+            onClick={handleShuffleClick}
             className="text-xs flex gap-2 items-center bg-stone-300 text-stone-900 dark:text-stone-400 dark:bg-stone-800/50 px-2 py-1 rounded-md"
           >
             Shuffle
@@ -81,6 +92,7 @@ export default function Keypp() {
           </button>
         </div>
       </div>
+
       <AnimatePresence mode="wait">
         {status !== "finished" ? (
           <motion.div
@@ -90,7 +102,7 @@ export default function Keypp() {
             transition={{ duration: 0.5 }}
             className="relative mb-4"
           >
-            <div className=" font-mono text-xl my-8">
+            <div className="font-mono text-xl my-8 cursor-text">
               {renderText()}
               {status === "paused" && (
                 <div className="absolute text-sm inset-0 flex items-center justify-center">
@@ -98,9 +110,11 @@ export default function Keypp() {
                 </div>
               )}
             </div>
-            <small className="text-xs text-stone-500">
-              You can click the text to focus if it's unresponsive.
-            </small>
+            {status !== "paused" && (
+              <small className="text-xs text-stone-500">
+                You can tap the text to focus if it's unresponsive.
+              </small>
+            )}
           </motion.div>
         ) : (
           <motion.div
@@ -108,7 +122,6 @@ export default function Keypp() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
-            className=""
           >
             <h3 className="text-xl font-medium mb-4 text-stone-800 dark:text-stone-200">Results</h3>
             <div className="grid grid-cols-2 font-mono gap-4">
