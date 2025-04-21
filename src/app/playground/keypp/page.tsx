@@ -1,5 +1,44 @@
 import Keypp from "../_components/keypp";
 import Back from "@/components/back";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Keypp",
+  description: "A minimal, interactive typing speed app",
+  openGraph: {
+    title: "Keypp",
+    description: "A minimal, interactive typing speed app",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+        width: 1200,
+        height: 800,
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    title: "Keypp",
+    description: "A minimal, interactive typing speed app",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+        width: 1200,
+        height: 800,
+      },
+    ],
+  },
+};
 
 export default function KeyppPage() {
   return (

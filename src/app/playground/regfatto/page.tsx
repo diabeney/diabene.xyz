@@ -1,6 +1,45 @@
 import Back from "@/components/back";
 import Regfatto from "../_components/regfatto";
 import ExternalLink from "@/components/external-link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Regfatto",
+  description: "A minimal, interactive typing speed app",
+  openGraph: {
+    title: "Regfatto",
+    description: "A minimal, interactive typing speed app",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+        width: 1200,
+        height: 800,
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    title: "Regfatto",
+    description: "A minimal, interactive typing speed app",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+        width: 1200,
+        height: 800,
+      },
+    ],
+  },
+};
 export default function RegexPage() {
   return (
     <div className="mt-4">

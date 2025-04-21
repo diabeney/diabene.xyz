@@ -1,7 +1,48 @@
 import { playgrounds } from "@/lib/constants/data";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { Metadata } from "next";
 import Link from "next/link";
 
+export const metadata: Metadata = {
+  title: "Astroworld! - Collection of interactive projects",
+  description:
+    "Collection of interactive projects. These are my own minimalistic versions of tools I use frequently",
+  openGraph: {
+    title: "Astroworld! - Collection of interactive projects",
+    description:
+      "Collection of interactive projects. These are my own minimalistic versions of tools I use frequently",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+        width: 1200,
+        height: 800,
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    title: "Astroworld! - Collection of interactive projects",
+    description:
+      "Collection of interactive projects. These are my own minimalistic versions of tools I use frequently",
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
+      },
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+        width: 1200,
+        height: 800,
+      },
+    ],
+  },
+};
 export default function Playground() {
   return (
     <div>

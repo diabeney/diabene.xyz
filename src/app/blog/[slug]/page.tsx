@@ -7,6 +7,49 @@ import BlogPostWrapper from "../_components/blog-post-wrapper";
 import ReadingProgressBar from "../_components/reading-progress-bar";
 import Image from "next/image";
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+
+  const { title, description, coverImage } = await getContentMetadata(slug);
+
+  return {
+    title: `${title} | Diabene`,
+    description,
+    openGraph: {
+      title: `${title} | Diabene`,
+      description,
+      images: [
+        {
+          url: coverImage,
+          width: 1200,
+          height: 800,
+        },
+        {
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+          width: 1200,
+          height: 800,
+        },
+      ],
+      type: "article",
+    },
+    twitter: {
+      title: `${title} | Diabene`,
+      description: `Read ${title} by Diabene on web dev technologies and chemical engineering`,
+      images: [
+        {
+          url: coverImage,
+          width: 1200,
+          height: 800,
+        },
+        {
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+          width: 1200,
+          height: 800,
+        },
+      ],
+    },
+  };
+}
 
 const __CONTENT_DIR = path.join(process.cwd(), "src", "contents");
 

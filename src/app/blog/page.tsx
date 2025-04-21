@@ -7,14 +7,15 @@ export const metadata: Metadata = {
   description: "Blog posts by Diabene",
   openGraph: {
     title: "Diabene",
-    description: "Software Engineer",
-    url: process.env.NEXT_PUBLIC_BASE_URL,
+    description:
+      "I share my thoughts, projects and discoveries in web dev technologies and chemical engineering",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/blog`,
     siteName: "Diabene Portfolio",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`,
-        width: 800,
-        height: 600,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
       },
     ],
     type: "article",
@@ -22,9 +23,15 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Diabene",
-    description: "Software Engineer",
+    description: "Utopia - Blog posts by Diabene on web dev technologies and chemical engineering",
     creator: "@diabeneyy",
-    images: [`${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`],
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
+      },
+    ],
   },
 };
 
