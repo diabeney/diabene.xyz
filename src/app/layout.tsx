@@ -84,25 +84,32 @@ export const metadata: Metadata = {
   authors: [{ name: "Diabene Yaw Addo" }],
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://diabene.xyz"),
   openGraph: {
-    title: "Diabene",
-    description: "Software Engineer",
+    title: "Diabene Yaw Addo",
+    description:
+      "JavaScript is the truth | Software Engineer, highly skilled in user interfaces, backend development, open-source projects, and developer tools.",
     url: process.env.NEXT_PUBLIC_BASE_URL,
     siteName: "Diabene Portfolio",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`,
-        width: 800,
-        height: 600,
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Diabene",
-    description: "Software Engineer",
+    title: "Diabene Yaw Addo",
+    description: "JavaScript is the truth | Software Engineer",
     creator: "@diabeneyy",
-    images: [`${process.env.NEXT_PUBLIC_BASE_URL}/logo.png`],
+    images: [
+      {
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
+        width: 1200,
+        height: 800,
+      },
+    ],
   },
 };
 
