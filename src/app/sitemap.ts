@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/playground/keypp`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "yearly",
       priority: 0.8,
     },
     {
@@ -38,7 +38,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${process.env.NEXT_PUBLIC_BASE_URL}/playground/regfatto`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "yearly",
       priority: 0.8,
     },
     ...postEntries,

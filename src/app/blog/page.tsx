@@ -15,21 +15,21 @@ export const metadata: Metadata = {
       {
         url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
         width: 1200,
-        height: 800,
+        height: 1000,
       },
     ],
     type: "article",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Diabene",
+    title: "Diabene | Blog",
     description: "Utopia - Blog posts by Diabene on web dev technologies and chemical engineering",
     creator: "@diabeneyy",
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
         width: 1200,
-        height: 800,
+        height: 1000,
       },
     ],
   },

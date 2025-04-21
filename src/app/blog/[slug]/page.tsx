@@ -18,33 +18,45 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: `${title} | Diabene`,
       description,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${slug}`,
       images: [
         {
           url: coverImage,
           width: 1200,
-          height: 800,
+          height: 1000,
         },
         {
           url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
           width: 1200,
-          height: 800,
+          height: 1000,
+        },
+        {
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+          width: 1200,
+          height: 1000,
         },
       ],
       type: "article",
     },
     twitter: {
       title: `${title} | Diabene`,
-      description: `Read ${title} by Diabene on web dev technologies and chemical engineering`,
+      card: "summary_large_image",
+      description: `Read ${title} by Diabene`,
       images: [
         {
           url: coverImage,
           width: 1200,
-          height: 800,
+          height: 1000,
         },
         {
           url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-1.png`,
           width: 1200,
-          height: 800,
+          height: 1000,
+        },
+        {
+          url: `${process.env.NEXT_PUBLIC_BASE_URL}/og-2.png`,
+          width: 1200,
+          height: 1000,
         },
       ],
     },
