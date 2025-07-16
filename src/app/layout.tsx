@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Ubuntu_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar";
 import ThemeProviderWithMeta from "../lib/provider";
@@ -66,7 +66,7 @@ const satoshi = localFont({
   display: "swap",
 });
 
-const ubuntuMono = Ubuntu_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   weight: ["400", "700"],
@@ -139,7 +139,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${satoshi.variable} ${ubuntuMono.variable} p-4 ${generalSans.variable} pt-8 md:pt-20 bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
+        className={`${satoshi.variable} ${geistMono.variable} p-4 ${generalSans.variable} pt-8 md:pt-20 bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
       >
         <Analytics />
         <ThemeProviderWithMeta>

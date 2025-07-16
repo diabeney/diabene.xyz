@@ -83,3 +83,23 @@ h6 {
 .warning > h3 {
   @apply dark:text-red-300 text-red-500;
 }
+
+/* Code block styling */
+pre {
+  font-family: var(--font-mono);
+}
+
+code {
+  font-family: var(--font-mono);
+}
+
+/* Ensure proper contrast in dark mode */
+.dark pre {
+  background-color: rgb(28 25 23);
+  color: rgb(245 245 244);
+}
+
+.dark code {
+  background-color: rgb(41 37 36);
+  color: rgb(245 245 244);
+}
