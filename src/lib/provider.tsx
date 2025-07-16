@@ -5,7 +5,7 @@ import ThemeColorMeta from "@/components/theme-color-meta";
 
 export default function ThemeProviderWithMeta({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
       <ThemeColorMeta />
       {children}
     </ThemeProvider>
