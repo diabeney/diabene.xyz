@@ -35,7 +35,7 @@ function Navbar() {
 
   return (
     <nav
-      className="w-full z-50 flex justify-between bg-(background:--background) dark:bg-(background:--background-dark) py-4 sticky top-0"
+      className="w-full px-4 z-50 flex justify-between py-4 backdrop-blur-md sticky top-0"
       aria-label="Main Navigation"
     >
       <section className="flex gap-8 items-center">
@@ -73,20 +73,6 @@ function Navbar() {
       </section>
       <section className="flex gap-2 items-center">
         <DigitalClock />
-        {mounted && (
-          <button
-            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="aspect-square p-1 w-fit grid place-items-center border rounded-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400"
-            aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-            title={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-          >
-            {theme === "light" ? (
-              <Icon icon={`mingcute:moon-fill`} aria-hidden="true" />
-            ) : (
-              <Icon icon={`mingcute:sun-fill`} aria-hidden="true" />
-            )}
-          </button>
-        )}
       </section>
     </nav>
   );

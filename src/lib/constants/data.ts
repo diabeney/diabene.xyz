@@ -9,6 +9,7 @@ export const projects = [
       { label: "Firebase", icon: "logos:firebase" },
       { label: "TypeScript", icon: "logos:typescript-icon" },
     ],
+    colors: "bg-purple-900/30 text-purple-300 border border-dashed border-purple-500/30",
     tag: ["frontend"],
   },
   {
@@ -22,54 +23,21 @@ export const projects = [
       { label: "TypeScript", icon: "logos:typescript-icon" },
       { label: "Express.js", icon: "logos:express" },
     ],
+    colors: "bg-emerald-900/30 text-emerald-500 border border-dashed border-emerald-500/30",
     tag: ["frontend", "backend"],
   },
+];
+
+export const tools = [
   {
-    title: "DirtToBright",
-    description:
-      "A web-based platform that allows users to easily book laundry services from Laundry Dirt to Bright",
-    link: "https://www.dirttobright.com/",
+    title: "JWT",
+    description: "A minimal library for generating and verifying JSON Web Tokens (JWT). Used RFC 7519 specification. Built as a learning project while exploring Golang.",
+    link: "https://github.com/diabeney/jwt",
     stack: [
-      { label: "Next.js", icon: "logos:nextjs" },
-      { label: "TypeScript", icon: "logos:typescript-icon" },
+      { label: "Golang", icon: "logos:golang" },
     ],
-    tag: ["frontend"],
-  },
-  {
-    title: "Alpha Pro",
-    description:
-      "A professional landing page developed for a janitorial services company. It shows their services and contact",
-    link: "https://www.alphaprojanitorial.com/",
-    stack: [
-      { label: "Next.js", icon: "logos:nextjs" },
-      { label: "TypeScript", icon: "logos:typescript-icon" },
-      { label: "MongoDB", icon: "logos:mongodb-icon" },
-    ],
-    tag: ["frontend"],
-  },
-  {
-    title: "Refhub",
-    description:
-      "A platform designed to streamline the process of requesting recommendation letters within the chemical engineering department at KNUST, making it easier for students and faculty.",
-    link: "https://cheesa-reference-web.vercel.app/",
-    stack: [
-      { label: "Next.js", icon: "logos:nextjs" },
-      { label: "MongoDB", icon: "logos:mongodb-icon" },
-      { label: "Express.js", icon: "logos:express" },
-    ],
-    tag: ["frontend", "backend"],
-  },
-  {
-    title: "Campus Oracle",
-    description:
-      "A digital platform aimed at supporting the mental health of tertiary students in Ghana.",
-    link: "https://www.campusoracle.org/",
-    stack: [
-      { label: "Next.js", icon: "logos:nextjs" },
-      { label: "Supabase", icon: "logos:supabase" },
-      { label: "Express.js", icon: "logos:express" },
-    ],
-    tag: ["frontend", "backend"],
+    colors: "bg-cyan-900/30 text-cyan-500 border border-dashed border-cyan-500/30",
+    tag: ["tool", "learning"],
   },
   {
     title: "Create Smooth App",
@@ -80,6 +48,7 @@ export const projects = [
       { label: "Node.js", icon: "logos:nodejs-icon" },
       { label: "TypeScript", icon: "logos:typescript-icon" },
     ],
+    colors: "bg-blue-500/10 text-blue-300 border border-dashed border-blue-500/30",
     tag: ["tool", "learning"],
   },
   {
@@ -91,6 +60,7 @@ export const projects = [
       { label: "React.js", icon: "logos:react" },
       { label: "TypeScript", icon: "logos:typescript-icon" },
     ],
+    colors: "bg-blue-500/10 text-blue-300 border border-dashed border-blue-500/30",
     tag: ["learning"],
   },
 ];
@@ -129,11 +99,5 @@ export const playgrounds = [
     path: "/playground/regfatto",
     description:
       "An interactive environment where you can practice and learn regular expressions. ",
-  },
-  {
-    name: "Js",
-    path: "/playground/js",
-    description:
-      "A JavaScript sandbox where you can experiment with code snippets, and see immediate results.",
   },
 ];

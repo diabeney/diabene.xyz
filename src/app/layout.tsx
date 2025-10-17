@@ -139,44 +139,58 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${satoshi.variable} ${geistMono.variable} p-4 ${generalSans.variable} pt-8 md:pt-20 bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
+        className={`${satoshi.variable} ${geistMono.variable} ${generalSans.variable} bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
       >
-        <Analytics />
-        <ThemeProviderWithMeta>
-          <div className="max-w-screen-sm  mx-auto">
-            <a
-              href="#content"
-              className="sr-only focus:not-sr-only focus:absolute focus:p-2 focus:bg-amber-500 focus:text-white focus:z-50 focus-visible:focus:ring-2 focus-visible:focus:ring-white"
-            >
-              Skip to content
-            </a>
-            <Navbar />
-            <main id="content" tabIndex={-1} className="focus:outline-none">
-              {children}
-            </main>
-            <footer className="text-xs space-y-4 my-10 text-stone-500" role="contentinfo">
-              <div className="w-full relative my-2">
-                <hr className="w-full border-stone-200 dark:border-stone-700" aria-hidden="true" />
-                <div
-                  className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden"
-                  aria-hidden="true"
+        <div className="min-h-screen max-h-[150vh] w-full relative">
+          {/* Crimson Depth */}
+          <div
+            className="absolute inset-0 z-0"
+            style={{
+              background: "radial-gradient(125% 125% at 50% 100%, #000000 40%, #241302 100%)",
+            }}
+          />
+          <div className="relative md:pt-20 z-10">
+            <Analytics />
+            <ThemeProviderWithMeta>
+              <div className="max-w-screen-md  mx-auto">
+                <a
+                  href="#content"
+                  className="sr-only focus:not-sr-only focus:absolute focus:p-2 focus:bg-amber-500 focus:text-white focus:z-50 focus-visible:focus:ring-2 focus-visible:focus:ring-white"
                 >
-                  <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-stone-500 dark:via-stone-400 to-transparent animate-shootingStar"></div>
-                </div>
+                  Skip to content
+                </a>
+                <main id="content" tabIndex={-1} className="focus:outline-none min-h-screen">
+                  <Navbar />
+                  <div className="p-4">{children}</div>
+                </main>
+                <footer className="text-xs px-4 space-y-4 my-10 text-stone-500" role="contentinfo">
+                  <div className="w-full relative my-2">
+                    <hr
+                      className="w-full border-stone-200 dark:border-stone-700"
+                      aria-hidden="true"
+                    />
+                    <div
+                      className="absolute top-0 left-0 right-0 h-[1px] overflow-hidden"
+                      aria-hidden="true"
+                    >
+                      <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-stone-500 dark:via-stone-400 to-transparent animate-shootingStar"></div>
+                    </div>
+                  </div>
+                  <div className="flex items-center mt-6 gap-2 justify-between">
+                    <p>&copy; {currentYear} Diabene Yaw Addo | All rights reserved</p>
+                    <Link
+                      className="font-extrabold text-amber-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded px-1"
+                      href="/"
+                      aria-label="Home"
+                    >
+                      タウンン
+                    </Link>
+                  </div>
+                </footer>
               </div>
-              <div className="flex items-center mt-6 gap-2 justify-between">
-                <p>&copy; {currentYear} Diabene Yaw Addo | All rights reserved</p>
-                <Link
-                  className="font-extrabold text-amber-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 rounded px-1"
-                  href="/"
-                  aria-label="Home"
-                >
-                  タウンン
-                </Link>
-              </div>
-            </footer>
+            </ThemeProviderWithMeta>
           </div>
-        </ThemeProviderWithMeta>
+        </div>
       </body>
     </html>
   );

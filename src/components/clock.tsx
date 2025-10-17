@@ -26,7 +26,7 @@ export default function DigitalClock() {
 
   return (
     <div
-      className="hidden sm:flex w-full items-center justify-center rounded-lg"
+      className=" w-full items-center justify-center rounded-lg"
       role="timer"
       aria-live="polite"
       aria-atomic="true"

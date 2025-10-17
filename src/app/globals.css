@@ -3,9 +3,11 @@
 
 :root {
   --background: oklch(0.99 0.0164 107.04);
-  --foreground: oklch(0.17 0.0041 106.83);
+  /* --foreground: oklch(0.17 0.0041 106.83); */
+  --foreground: #000000;
   --background-dark: var(--foreground);
   --foreground-dark: var(--background);
+  --accent: #f59e0b;
   --focus-ring: 1px solid #f59e0b;
 }
 
@@ -49,7 +51,7 @@ html {
   scrollbar-gutter: stable;
 }
 body {
-  @apply font-(family-name:--font-paragraph) font-medium leading-relaxed text-pretty tracking-tight text-stone-600 dark:text-stone-400 my-[1lh];
+  @apply font-(family-name:--font-paragraph) font-medium leading-relaxed text-pretty tracking-tight text-stone-600 dark:text-stone-400;
 }
 
 h1,
