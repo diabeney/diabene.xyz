@@ -218,7 +218,7 @@ export default function Regfatto() {
                 to prevent freezing.
               </small>
             </div>
-            <div className="w-full sm:w-32 mt-4 md:mt-0">
+            <div className="w-full sm:w-32 mt-4 sm:mt-0">
               <h6 className="mb-2">Flags</h6>
               <input
                 type="text"
@@ -265,9 +265,9 @@ export default function Regfatto() {
         </div>
         <div className="mt-6 ">
           <h2 className="text-xl font-semibold mb-2">Explanation</h2>
-          <pre className="font-mono text-sm text-stone-700 dark:text-stone-300 whitespace-pre-wrap">
+          <div className="font-mono bg-transparent text-sm text-stone-700 dark:text-stone-300 whitespace-pre-wrap">
             {explanation}
-          </pre>
+          </div>
         </div>
       </div>
     </div>
