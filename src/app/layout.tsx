@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Geist_Mono } from "next/font/google";
+import { Geist_Mono, Sora } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/navbar";
 import ThemeProviderWithMeta from "../lib/provider";
@@ -73,6 +73,13 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const geist = Sora({
+  subsets: ["latin"],
+  variable: "--font-paragraph",
+  weight: ["400", "500", "600", "700", "300"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     template: "%s | Diabene",
@@ -139,7 +146,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${satoshi.variable} ${geistMono.variable} ${generalSans.variable} bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
+        className={`${satoshi.variable} ${geistMono.variable} ${geist.variable} bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
       >
         <div className="min-h-screen max-h-[150vh] w-full relative">
           {/* Crimson Depth */}
