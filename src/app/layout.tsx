@@ -7,37 +7,6 @@ import ThemeProviderWithMeta from "../lib/provider";
 import { Analytics } from "@vercel/analytics/react";
 import Link from "next/link";
 
-const generalSans = localFont({
-  src: [
-    {
-      path: "../../public/fonts/GeneralSans-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GeneralSans-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GeneralSans-Variable.woff2",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GeneralSans-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/GeneralSans-Light.woff2",
-      weight: "300",
-      style: "normal",
-    },
-  ],
-  variable: "--font-paragraph",
-  display: "swap",
-});
 
 const satoshi = localFont({
   src: [
@@ -134,6 +103,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   minimumScale: 1,
   maximumScale: 5,
+  themeColor: "#402101",
   userScalable: true,
 };
 
