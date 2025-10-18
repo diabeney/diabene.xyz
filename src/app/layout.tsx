@@ -146,7 +146,7 @@ export default function RootLayout({
           <div
             className="absolute inset-0 z-0"
             style={{
-              background: "radial-gradient(125% 125% at 50% 100%, #000000 40%, #241302 100%)",
+              background: "radial-gradient(125% 125% at 50% 100%, #000000 40%, #402101 100%)",
             }}
           />
           <div className="relative md:pt-20 z-10">

@@ -51,7 +51,7 @@ html {
   scrollbar-gutter: stable;
 }
 body {
-  @apply font-(family-name:--font-paragraph) font-medium leading-relaxed text-pretty tracking-tight text-stone-600 dark:text-stone-400;
+  @apply font-(family-name:--font-paragraph) font-medium leading-relaxed text-pretty tracking-tight text-stone-600 dark:text-stone-300;
 }
 
 h1,
