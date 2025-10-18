@@ -92,7 +92,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
             <p className="text-stone-700 !my-0">•</p>
             <p className=" !my-0">{readTime} min read</p>
           </section>
-          <p className="text-stone-700 !my-0">
+          <p className="text-stone-700 hidden sm:block !my-0">
             Updated{" "}
             {formatDistanceToNow(updatedAt, {
               addSuffix: true,
