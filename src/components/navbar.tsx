@@ -71,7 +71,7 @@ function Navbar() {
           </ul>
         </div>
       </section>
-      <section className="flex gap-2 items-center">
+      <section className="gap-2 items-center ">
         <DigitalClock />
       </section>
     </nav>

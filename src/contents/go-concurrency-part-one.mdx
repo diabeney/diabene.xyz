@@ -1,0 +1,215 @@
+---
+title: "Understanding Concurrency in Golang: Part One"
+description: "An Introduction to concurrency and its implementation in Golang"
+keywords: ["Golang", "Concurrency", "Goroutines"]
+author: "Diabene Yaw Addo"
+published: true
+coverImage: "https://ik.imagekit.io/i7gyrkpch/Blurred%20Night%20Walker.png?updatedAt=1760914698795"
+---
+Concurrency is one of the most powerful and defining features of the Go programming language. It allows developers to design programs that can efficiently handle multiple tasks at once. This includes serving numerous web requests, processing large data sets, or performing background operations without significant complexity.
+
+Go’s design philosophy emphasizes simplicity and performance, and its built-in support for concurrency is a major reason it has become a popular choice for building scalable and high-performance systems. However, writing concurrent programs is not without its challenges. 
+
+This series of blog posts aims to explain Go’s concurrency model into simple concepts. We will look at how concurrency works in Go, it's common challenges, and how Go’s standard library and tools help developers manage these challenges effectively.
+
+# Concurrency
+Concurrency refers to the ability of a program to handle multiple tasks in a way that makes progress on each task independently. While it may seem like the program is doing many things at once, what concurrency truly involves is the efficient management of multiple tasks over time which ensures that each task gets a chance to make progress. 
+
+![Race output](https://www-files.honeybadger.io/posts/ruby-concurrency-parallelism/ruby-concurrency.png)
+Source: honeybadger.io
+
+To illustrate this, imagine you're cooking jollof rice while grilling chicken. You’re not doing both tasks at the _exact_  same second, but you are switching between them in a manner that both tasks progress simultaneously. For instance, while waiting for the rice to cook, you may choose to flip the chicken on the grill, and while the chicken grills, you may check the rice. This approach ensures that both the jollof rice and the grilled chicken get done around the same time, even though you’re not technically cooking both independently at once. Similarly, in programming, concurrency helps ensure that multiple tasks make steady progress and complete in an efficient and timely manner.
+
+## Why is it hard?
+Even though concurrency sounds exciting, it’s one of the most challenging parts of programming. This is because when multiple parts of a program are running at the same time, it becomes difficult to predict what will happen next.
+
+Let’s look at some common problems that make concurrency hard.
+
+### Race Conditions
+A race condition happens when multiple processes operate on the same shared resource without proper coordination. If one of them modifies the data while another is reading or writing to it, the outcome becomes dependent on the precise timing of their execution. Because this timing is unpredictable, the program may produce inconsistent, incorrect, or unexpected results or behaviour across different runs. Let's look at the example below
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	var scoreBoard int
+
+	addPoints := func(points int) {
+		scoreBoard += points
+	}
+
+	for i := 1; i < 10; i++ {
+		go addPoints(i)
+	}
+
+	time.Sleep(time.Second * 1) // This is not recommended
+
+	fmt.Printf("This is the final scores: %v\n", scoreBoard)
+}
+
+```
+In this program, we define a shared variable `scoreBoard` that keeps track of a cumulative score. Inside the loop, we start several goroutines, each adding a number of points to the scoreboard. The `time.Sleep` call in the main function simply introduces a short delay, giving the goroutines time to execute before the program exits (You can vary the time to see how it affects the program's behaviour. This is not recommended, we'll see why shortly).
+
+At first glance, it may seem that the program should print the sum of all integers from 1 to 9, which is 45. However, if you run this code multiple times, you’ll notice that the output changes between runs. Sometimes you might see values like 25, 42, or even 27.
+
+```bash
+going (main) % go run main.go
+This is the final scores: 45
+
+going (main) % go run main.go
+This is the final scores: 45
+
+going (main) % go run main.go
+This is the final scores: 25 // <= IMPOSTER
+
+going (main) % go run main.go
+This is the final scores: 45
+```
+This inconsistency is caused by a race condition. When several goroutines run at once, the steps involved in reading and modifying the `scoreboard` variable can overlap in unpredictable ways. The final printed result therefore depends on how the goroutines are scheduled by the runtime, something entirely outside your control. 
+
+
+#### Detecting race Conditions
+Go provides a built-in way to detect race conditions using the `-race` flag. You can run your program with the following command:
+
+```go
+go run -race main.go
+```
+When a race condition is detected, Go prints a detailed warning that shows where in the code the conflicting accesses occur. For example, you might see something like this:
+![Race output](https://ik.imagekit.io/i7gyrkpch/Screenshot%202025-10-19%20at%209.49.46%E2%80%AFPM.png?updatedAt=1760910699958)
+
+This output `Found 3 data race(s)` tells you that multiple goroutines are reading and writing to the same memory location `scoreBoard` at the same time. This confirms that a race condition exists.
+
+### Atomicity
+
+This refers to the idea that an operation should execute completely or not at all, i.e., there should be no point where another operation can interrupt it or observe it halfway done. Atomic operations are fundamental to maintaining data integrity in concurrent programs, especially when multiple goroutines modify shared state. 
+
+In the earlier scoreBoard example, each goroutine was updating the shared variable using this line:
+```go
+scoreBoard += points
+```
+At first glance, this might look like a simple, single-step operation. However, it is not atomic. Internally, the Go compiler translates this into three separate steps:
+
+ 1. Read the current value of `scoreBoard`
+
+ 2. Add `points` to that value
+
+ 3. Write the new result back to memory
+
+When several goroutines perform these steps concurrently, they can interleave in unpredictable ways. For instance, two goroutines may both read the same old value of `scoreBoard`, add their respective points, and then write back, one after the other. This means the update from one goroutine effectively overwrites the other’s change, leading to incorrect totals.
+
+To make such operations atomic (meaning that all three steps happen as one uninterruptible action) Go provides the `sync/atomic` package. It includes functions that perform low-level atomic reads and writes to shared variables, which ensures that no two goroutines can interfere with each other during an update.
+
+# Go's Approach to Concurrency
+Go approaches concurrency differently from many other languages. Instead of dealing directly with low-level threads, Go introduces a simpler and safer abstraction called a **goroutine**.
+
+A goroutine is a lightweight thread of execution managed by the Go runtime. It allows you to run functions concurrently without worrying about creating or managing operating system threads yourself. You start a goroutine by prefixing a function call with the `go` keyword and just like that, it runs independently, alongside other goroutines. What makes Go’s concurrency model unique is its foundation on the [Communicating Sequential Processes (CSP)](https://en.wikipedia.org/wiki/Communicating_sequential_processes) principle.
+
+This philosophy can be summarized by a principle popularized by [Rob Pike](https://www.youtube.com/watch?v=PAAkCSZUG1c&t=3s), one of Go’s creators:
+
+> Do not communicate by sharing memory; instead, share memory by communicating.
+
+In other words, Go encourages the design of concurrent programs where data is passed safely between goroutines through channels, rather than multiple goroutines directly modifying shared variables. However, there are cases where shared memory is necessary. In those situations, Go provides the `sync` and other packages to ensure operations remain predictable and safe.
+
+# The "sync" package
+
+The sync package in Go provides several types for coordinating concurrent activities and protecting shared resources.
+
+## WaitGroup
+
+When launching multiple goroutines, it’s often necessary to wait until all of them have finished before continuing. Instead of relying on arbitrary delays like `time.Sleep` (like in our first example), Go provides `sync.WaitGroup` to handle this gracefully.
+
+Here’s how we can modify our earlier scoreboard example to use a WaitGroup:
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func main() {
+	var scoreBoard int
+	var wg sync.WaitGroup // new addition
+
+	addPoints := func(points int) {
+		defer wg.Done()
+		scoreBoard += points
+	}
+
+	for i := 1; i < 10; i++ {
+		wg.Add(1)
+		go addPoints(i)
+	}
+
+	wg.Wait() // replaces time.Sleep(time.Second)
+	fmt.Printf("This is the final scores: %v\n", scoreBoard)
+}
+
+```
+
+`sync.WaitGroup` keeps a counter of all defined goroutines. `wg.Add(1)` increments the counter before each goroutine starts, and each goroutine calls `wg.Done()` when it finishes. The main function blocks at `wg.Wait()` until the counter returns to zero. This ensures that all goroutines have completed before printing the final score.
+
+<div className="warning">
+WaitGroup only helps coordinate goroutines i.e., it tells the main function when all goroutines have finished running. It does not control how those goroutines access shared data. So even if you use a WaitGroup but your goroutines are modifying a shared variable (like scoreBoard) without synchronization, the race condition still exists.
+</div>
+
+## Mutexes
+
+A Mutex (short for mutual exclusion) is a locking mechanism used to control access to shared data. It ensures that only one goroutine can execute a particular piece of code (critical section) at a time.
+
+
+<div className="info">
+The **critical section** is the part of your program that accesses shared resources such as variables, files, or network connections. If multiple goroutines enter the critical section simultaneously, data races can occur. Using a mutex prevents that by enforcing exclusive access.
+</div>
+
+Let’s revisit the scoreboard example, this time with a mutex:
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func main() {
+	var scoreBoard int
+	var wg sync.WaitGroup
+	var mu sync.Mutex
+
+	addPoints := func(points int) {
+		defer wg.Done()
+		mu.Lock() 
+		scoreBoard += points
+		mu.Unlock()
+	}
+
+	for i := 1; i < 10; i++ {
+		wg.Add(1)
+		go addPoints(i)
+	}
+
+	wg.Wait()
+	fmt.Printf("This is the final scores: %v\n", scoreBoard)
+}
+
+```
+
+In this version, the `mutex` ensures that only one goroutine updates scoreBoard at a time. The `WaitGroup` ensures that all goroutines finish before printing the result. Together, they eliminate the race condition completely.
+
+# Conclusion
+
+In this first part of our series, we’ve explored what concurrency is, why it’s tricky, and how Go provides simple tools to help us write safe concurrent programs.
+
+In the next chapter, we’ll look at Go’s channel-based concurrency model. We’ll see how channels can replace locks in many situations and make concurrent code more elegant and expressive. 
+
+
+# Reference
+
+Concurrency in Go by Katherine Cox-Buday.

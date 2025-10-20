@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import ExternalLink from "@/components/external-link";
+import { Code } from "bright";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -14,7 +15,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       if (isInline) {
         return (
           <code
-            className="font-mono text-sm bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-200 px-1 py-0.5 rounded"
+            className="font-mono text-sm bg-neutral-700 text-amber-50 px-1 py-0.5 rounded"
             {...props}
           >
             {children}
@@ -22,16 +23,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         );
       }
       return (
-        <code className={`font-mono text-sm ${className}`} {...props}>
+        <Code lang="go" theme={"github-dark"} className={`font-mono w-full ${className} !m-0`} {...props}>
           {children}
-        </code>
+        </Code>
       );
     },
     pre: ({ children, ...props }) => (
-      <pre
-        className="font-mono text-sm bg-stone-100 dark:bg-stone-900 text-stone-800 dark:text-stone-200 p-4 rounded-lg overflow-x-auto border border-stone-200 dark:border-stone-700 my-4"
-        {...props}
-      >
+      <pre className="w-full !p-0" {...props}>
         {children}
       </pre>
     ),
