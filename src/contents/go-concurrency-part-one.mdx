@@ -26,7 +26,7 @@ Even though concurrency sounds exciting, it’s one of the most challenging part
 Let’s look at some common problems that make concurrency hard.
 
 ### Race Conditions
-A race condition happens when multiple processes or operate on the same shared resource without proper coordination. If one of them modifies the data while another is reading or writing to it, the outcome becomes dependent on the precise timing of their execution. Because this timing is unpredictable, the program may produce inconsistent, incorrect, or unexpected results or behaviour across different runs. Let's look at the example below
+A race condition happens when multiple processes operate on the same shared resource without proper coordination. If one of them modifies the data while another is reading or writing to it, the outcome becomes dependent on the precise timing of their execution. Because this timing is unpredictable, the program may produce inconsistent, incorrect, or unexpected results or behaviour across different runs. Let's look at the example below
 
 ```go
 package main
@@ -53,7 +53,7 @@ func main() {
 }
 
 ```
-In this program, we define a shared variable `scoreBoard` that keeps track of a cumulative score. Inside the loop, we start several goroutines, each adding a number of points to the scoreboard. The `time.Sleep` call in the main function simply introduces a short delay, giving the goroutines time to execute before the program exits (You can vary the time to see how it affects the program's behaviour).
+In this program, we define a shared variable `scoreBoard` that keeps track of a cumulative score. Inside the loop, we start several goroutines, each adding a number of points to the scoreboard. The `time.Sleep` call in the main function simply introduces a short delay, giving the goroutines time to execute before the program exits (You can vary the time to see how it affects the program's behaviour. This is not recommended, we'll see why shortly).
 
 At first glance, it may seem that the program should print the sum of all integers from 1 to 9, which is 45. However, if you run this code multiple times, you’ll notice that the output changes between runs. Sometimes you might see values like 25, 42, or even 27.
 
@@ -70,7 +70,7 @@ This is the final scores: 25 // <= IMPOSTER
 going (main) % go run main.go
 This is the final scores: 45
 ```
-This inconsistency is caused by a race condition. When several goroutines run at once, these steps can overlap in unpredictable ways. The final printed result therefore depends on how the goroutines are scheduled by the runtime, something entirely outside your control. 
+This inconsistency is caused by a race condition. When several goroutines run at once, the steps involved in reading and modifying the `scoreboard` variable can overlap in unpredictable ways. The final printed result therefore depends on how the goroutines are scheduled by the runtime, something entirely outside your control. 
 
 
 #### Detecting race Conditions
@@ -82,9 +82,9 @@ go run -race main.go
 When a race condition is detected, Go prints a detailed warning that shows where in the code the conflicting accesses occur. For example, you might see something like this:
 ![Race output](https://ik.imagekit.io/i7gyrkpch/Screenshot%202025-10-19%20at%209.49.46%E2%80%AFPM.png?updatedAt=1760910699958)
 
-This output tells you that multiple goroutines are reading and writing to the same memory location `(scoreBoard)` at the same time. This confirms that a race condition exists.
+This output `Found 3 data race(s)` tells you that multiple goroutines are reading and writing to the same memory location `scoreBoard` at the same time. This confirms that a race condition exists.
 
-### Atomiciy
+### Atomicity
 
 This refers to the idea that an operation should execute completely or not at all, i.e., there should be no point where another operation can interrupt it or observe it halfway done. Atomic operations are fundamental to maintaining data integrity in concurrent programs, especially when multiple goroutines modify shared state. 
 
@@ -94,11 +94,11 @@ scoreBoard += points
 ```
 At first glance, this might look like a simple, single-step operation. However, it is not atomic. Internally, the Go compiler translates this into three separate steps:
 
- - Read the current value of `scoreBoard`
+ 1. Read the current value of `scoreBoard`
 
- - Add `points` to that value
+ 2. Add `points` to that value
 
- - Write the new result back to memory
+ 3. Write the new result back to memory
 
 When several goroutines perform these steps concurrently, they can interleave in unpredictable ways. For instance, two goroutines may both read the same old value of `scoreBoard`, add their respective points, and then write back, one after the other. This means the update from one goroutine effectively overwrites the other’s change, leading to incorrect totals.
 
@@ -107,9 +107,9 @@ To make such operations atomic (meaning that all three steps happen as one unint
 # Go's Approach to Concurrency
 Go approaches concurrency differently from many other languages. Instead of dealing directly with low-level threads, Go introduces a simpler and safer abstraction called a **goroutine**.
 
-A goroutine is a lightweight thread of execution managed by the Go runtime. It allows you to run functions concurrently without worrying about creating or managing operating system threads yourself. You start a goroutine by prefixing a function call with the `go` keyword and just like that, it runs independently, alongside other goroutines. What makes Go’s concurrency model unique is its foundation on the Communicating Sequential Processes (CSP) principle.
+A goroutine is a lightweight thread of execution managed by the Go runtime. It allows you to run functions concurrently without worrying about creating or managing operating system threads yourself. You start a goroutine by prefixing a function call with the `go` keyword and just like that, it runs independently, alongside other goroutines. What makes Go’s concurrency model unique is its foundation on the [Communicating Sequential Processes (CSP)](https://en.wikipedia.org/wiki/Communicating_sequential_processes) principle.
 
-This philosophy can be summarized by a principle popularized by Rob Pike, one of Go’s creators:
+This philosophy can be summarized by a principle popularized by [Rob Pike](https://www.youtube.com/watch?v=PAAkCSZUG1c&t=3s), one of Go’s creators:
 
 > Do not communicate by sharing memory; instead, share memory by communicating.
 
@@ -135,7 +135,7 @@ import (
 
 func main() {
 	var scoreBoard int
-	var wg sync.WaitGroup
+	var wg sync.WaitGroup // new addition
 
 	addPoints := func(points int) {
 		defer wg.Done()
@@ -147,7 +147,7 @@ func main() {
 		go addPoints(i)
 	}
 
-	wg.Wait()
+	wg.Wait() // replaces time.Sleep(time.Second)
 	fmt.Printf("This is the final scores: %v\n", scoreBoard)
 }
 

@@ -23,7 +23,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         );
       }
       return (
-        <Code lang="go" theme={"github-dark"} className={`font-mono h-full text-lg w-full ${className} !m-0`} {...props}>
+        <Code lang="go" theme={"github-dark"} className={`font-mono w-full ${className} !m-0`} {...props}>
           {children}
         </Code>
       );

@@ -31,7 +31,7 @@ export default function DigitalClock() {
       aria-live="polite"
       aria-atomic="true"
     >
-      <time className="relative font-mono" aria-label={formattedTime} dateTime={`T${time}`}>
+      <time className="relative text-sm md:text-base font-mono" aria-label={formattedTime} dateTime={`T${time}`}>
         {time.split("").map((char, index) => (
           <span
             key={index}
