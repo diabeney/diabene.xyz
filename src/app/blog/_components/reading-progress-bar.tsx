@@ -56,7 +56,7 @@ export default function ReadingProgressBar({ readTime = 0 }: ReadingProgressBarP
                 y: 10,
                 transition: { duration: 0.3 },
               }}
-              className="px-4 py-1.5 rounded-full bg-white/90 dark:bg-stone-800/90 text-xs font-medium text-stone-800 dark:text-stone-200 backdrop-blur-sm shadow-sm flex items-center"
+              className="px-4 py-1.5 rounded-full text-xs border border-neutral-800 bg-black/30 backdrop-blur-sm shadow-sm flex items-center"
             >
               <div className="flex items-center gap-1">
                 <Icon icon="heroicons:clock" className="w-3.5 h-3.5" />
@@ -74,7 +74,7 @@ export default function ReadingProgressBar({ readTime = 0 }: ReadingProgressBarP
                 transition: { duration: 0.3 },
               }}
               onClick={handleDismiss}
-              className="p-1.5 bg-white/90 dark:bg-stone-800/90 rounded-full hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors shadow-sm backdrop-blur-sm"
+              className="p-1.5 bg-black/30 border border-neutral-800 rounded-full transition-colors shadow-sm backdrop-blur-sm"
               aria-label="Close reading progress indicator"
             >
               <Icon
