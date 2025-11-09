@@ -16,7 +16,7 @@ export const projects = [
     title: "JED",
     description:
       "An online event management platform that integrates an offline USSD voting system.",
-    link: "https://jed-event.com",
+    link: "https://jedevent.com",
     stack: [
       { label: "Next.js", icon: "logos:nextjs" },
       { label: "Supabase", icon: "logos:supabase" },
@@ -30,12 +30,20 @@ export const projects = [
 
 export const tools = [
   {
+    title: "Balto",
+    description:
+      " A lightweight Go reverse proxy and load balancer with hot‑reload routing and a monitoring dashboard.",
+    link: "https://github.com/diabeney/balto",
+    stack: [{ label: "Golang", icon: "logos:golang" }],
+    colors: "bg-cyan-900/30 text-cyan-500 border border-dashed border-cyan-500/30",
+    tag: ["tool", "learning"],
+  },
+  {
     title: "JWT",
-    description: "A minimal library for generating and verifying JSON Web Tokens (JWT). Used RFC 7519 specification. Built as a learning project while exploring Golang.",
+    description:
+      "A minimal library for generating and verifying JSON Web Tokens (JWT). Used RFC 7519 specification. Built as a learning project while exploring Golang.",
     link: "https://github.com/diabeney/jwt",
-    stack: [
-      { label: "Golang", icon: "logos:golang" },
-    ],
+    stack: [{ label: "Golang", icon: "logos:golang" }],
     colors: "bg-cyan-900/30 text-cyan-500 border border-dashed border-cyan-500/30",
     tag: ["tool", "learning"],
   },
