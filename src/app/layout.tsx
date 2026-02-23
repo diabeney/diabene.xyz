@@ -116,7 +116,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`${satoshi.variable} ${geistMono.variable} ${geist.variable} bg-(background:--background) text-(color:--foreground) dark:bg-(background:--background-dark) dark:text-(color:--foreground-dark) antialiased`}
+        className={`${satoshi.variable} ${geistMono.variable} ${geist.variable} bg-background text-foreground dark:bg-background-dark dark:text-foreground-dark antialiased`}
       >
         <div className="min-h-screen max-h-[150vh] w-full relative">
           {/* Crimson Depth */}
